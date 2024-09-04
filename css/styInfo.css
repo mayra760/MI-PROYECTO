@@ -1,0 +1,40 @@
+.informacion {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+h3 {
+    color: #555;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.row {
+    padding: 10px;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    margin: 5px;
+    width: 200px;
+    /* Colores agradables */
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.row:hover {
+    background-color: #45e2f7;
+}

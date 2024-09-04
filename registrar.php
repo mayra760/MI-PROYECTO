@@ -22,21 +22,21 @@
         <img src="img/foto.jpeg" alt="Imagen">
         <div class="form-container">
         <h1><b>REGÍSTRATE!</b></h1>
-<form id="registerForm" action="method/controler_login.php?recorrido=2" method="post">
+        <form id="registerForm" action="method/controler_login.php?recorrido=2" method="post">
     <input type="number" name="documento" placeholder="Documento" required><br>
     <input type="text" name="nombre" placeholder="Nombre" required><br>
     <input type="text" name="apellido" placeholder="Apellido" required><br>
     <input type="email" name="correo" placeholder="Correo" required><br>
-    <input type="password" name="contraseña" placeholder="Contraseña" required><br>
+    <div>
+        <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required>
+        <input type="checkbox" id="showPassword" onclick="visibilidadContraseña()"> Mostrar contraseña
+    </div>
+    <br>
     <input type="date" name="fecha" placeholder="Fecha de nacimiento" required><br>
-
-    <!-- Casilla de verificación para los términos y condiciones -->
     <div class="form-check mt-3">
         <input class="form-check-input" type="checkbox" id="termsCheck" required>
         <label class="form-check-label" for="termsCheck"><a href="usuarios/terminosCon.php" target="_blank"> Acepto los Términos y condiciones</a></label>
     </div>
-
-    <!-- Casilla de verificación para la política de privacidad -->
     <div class="form-check mt-3 mb-3">
         <input class="form-check-input" type="checkbox" id="privacyCheck" required>
         <label class="form-check-label" for="privacyCheck"> <a href="politicaPri.php" target="_blank">He leído y acepto la Política de privacidad</a></label>
@@ -49,7 +49,17 @@
 </form>
 
 <script>
-    document.getElementById('registerForm').addEventListener('submit', function(event) {
+// Función para mostrar/ocultar la contraseña
+function visibilidadContraseña(fieldId = 'contraseña') {
+    const field = document.getElementById(fieldId);
+    const showPassword = document.getElementById(fieldId === 'contraseña' ? 'showPassword' : 'showConfirmPassword');
+    if (showPassword.checked) {
+        field.type = 'text';
+    } else {
+        field.type = 'password';
+    }
+}
+document.getElementById('registerForm').addEventListener('submit', function(event) {
         const termsCheck = document.getElementById('termsCheck');
         const privacyCheck = document.getElementById('privacyCheck');
 

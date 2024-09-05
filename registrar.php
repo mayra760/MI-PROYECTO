@@ -39,7 +39,6 @@
         <p id="passwordSpecial" class="error">Debe incluir al menos un carácter especial.</p>
     </div>
     <br>
-    <input type="date" name="fecha" placeholder="Fecha de nacimiento" required><br>
     <div class="form-check mt-3">
         <input class="form-check-input" type="checkbox" id="termsCheck" required>
         <label class="form-check-label" for="termsCheck"><a href="usuarios/terminosCon.php" target="_blank"> Acepto los Términos y condiciones</a></label>

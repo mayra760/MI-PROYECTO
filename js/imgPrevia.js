@@ -10,6 +10,6 @@ function previewImage() {
   if (file) {
       reader.readAsDataURL(file);
   } else {
-      preview.src = "../imagenes/hellokitty.gif";
+      preview.src = "../img/dedo.jpg";
   }
 }

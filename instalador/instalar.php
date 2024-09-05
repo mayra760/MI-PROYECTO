@@ -100,7 +100,6 @@
             <button type="submit" class="btn btn-custom">Instalar</button>
         </form>
         <br>
-        <a href="login.php" class="btn btn-home"><i class="fas fa-arrow-left"></i> Volver</a>
     </div>
     <!-- Incluir Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-8ON3tIYB/mzF5LsHhlHjdP1n5iwcE6M2Cxd4ll33EJZWpK00lOmMwBZaAqE3b3+Kr" crossorigin="anonymous"></script>

@@ -19,4 +19,3 @@ if($seccion=="cerrarSe"){
 }
 
 include("navUser.php");
-

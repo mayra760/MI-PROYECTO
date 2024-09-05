@@ -43,7 +43,7 @@
                         echo Productos::mostrarPro();
                         ?>
                     </div>
-                </div>           
+                </div>   <br><br>        
                 <div class="col-lg-4 sidebar">
                     <div class="sidebar-widget category">
                         <h2 class="title">Categorías</h2>

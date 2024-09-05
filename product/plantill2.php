@@ -18,25 +18,44 @@
       </head>
 <body>
       <!-- class="navbar navbar-expand-lg navbar-light bg-light" -->
-    <nav  class="navbar navbar-expand-lg navbar-light" style="background-color: #f58d06;">
-      <div class="container-fluid">
-      <a class="navbar-brand" href="../usuarios/conBaBus.php?seccion=home"><h1><b>FASHION WORLD</b></h1></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="../product/vista.php">ir a categorias</a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="favoritos.php"><i class="fa fa-star"></i> favoritos <span id="favoritos-count" class="badge badge-pill badge-primary"></span></a></li>
-        <li class="nav-item"><a class="nav-link active" aria-current="page" href="carrito.php"><i class="fa fa-shopping-cart"></i> ver carrito <span id="carrito-count" class="badge badge-pill badge-primary"></span></a></li>
-        <form id="searchForm" method="GET" action="buscar.php">
-            <input type="text" name="query" placeholder="detalles de productos..." required><button type="submit"><i class="fa fa-search"></i>Buscar</button>
-        </form>
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f58d06;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="../usuarios/conBaBus.php?seccion=home">
+      <h1 class="navbar-title"><b>FASHION WORLD</b></h1>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="../product/vista.php">
+            <i class="fa fa-th"></i> Categorías
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="favoritos.php">
+            <i class="fa fa-star"></i> Favoritos 
+            <span id="favoritos-count" class="badge badge-pill badge-light"></span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="carrito.php">
+            <i class="fa fa-shopping-cart"></i> Ver carrito 
+            <span id="carrito-count" class="badge badge-pill badge-light"></span>
+          </a>
+        </li>
+        <li class="nav-item ms-auto">
+          <form id="searchForm" method="GET" action="buscar.php" class="d-flex align-items-center">
+            <input type="text" name="query" placeholder="Buscar productos..." required class="form-control me-2">
+            <button type="submit" class="btn btn-light"><i class="fa fa-search"></i></button>
+          </form>
+        </li>
       </ul>
-</div>
+    </div>
+  </div>
+</nav>
 
-      </div>
-    </nav>
 
 
 </body>

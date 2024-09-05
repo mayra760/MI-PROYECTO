@@ -18,7 +18,7 @@ include_once '../method/productos_class.php';
                 <div class="col-10">
                     <?php
                     $categoria = $_GET['categoria'] ?? 1;
-                    echo " Categoría para hombres y mujeres ";
+                    echo " <center><h2>Categoría para hombres y mujeres</center><h2> ";
                     echo Productos::mostrarCategorias($categoria);
                     ?>
                 </div>

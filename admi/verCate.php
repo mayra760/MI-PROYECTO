@@ -1,3 +1,6 @@
+
+<title>ver categorias</title>
+<br><br>
 <div class="row">
 <?php 
 

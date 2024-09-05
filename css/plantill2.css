@@ -1,26 +1,73 @@
-body {
-    background-color: rgb(207, 255, 239);
-    font-family: 'Arial', sans-serif;
-    color: #333;
+/* Estilo general del navbar */
+.navbar {
+  background-color: #f58d06; /* Fondo naranja brillante */
+  padding: 0.75rem 1.5rem; /* Aumenta el espacio dentro del navbar */
 }
 
-h1 {
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
+/* Estilo para el título en la navbar */
+.navbar-title {
+  color: white; /* Color del texto del título */
+  font-size: 1.5rem; /* Tamaño de fuente del título, ajustado al mismo tamaño que los anteriores */
+  font-weight: bold; /* Negrita en el título */
+  margin: 0; /* Eliminar márgenes adicionales */
 }
 
-input[type="text"] {
-    border-radius: 10px;
-    border: 2px solid #7ED0D8;
-    padding: 5px 10px;
-    margin-right: 10px;
+/* Estilo para los enlaces de navegación */
+.nav-link {
+  color: white !important; /* Color del texto de los enlaces */
+  padding: 10px 20px; /* Espaciado en los enlaces, aumentado para más comodidad */
+  font-size: 1rem; /* Tamaño de fuente de los enlaces */
 }
 
-button[type="submit"] {
-    border-radius: 5px;
-    background-color: #b9ebf0;
-    border: none;
-    padding: 5px 15px;
-    color: black;
+/* Cambia el color de fondo del enlace activo */
+.nav-link.active {
+  background-color: #f58d06; /* Fondo naranja brillante */
+  color: white !important; /* Color del texto */
+  border-radius: 5px; /* Bordes redondeados */
 }
 
+/* Estilo para el formulario de búsqueda */
+#searchForm {
+  margin-top: 5px; /* Espaciado superior */
+  display: flex;
+  align-items: center; /* Centra verticalmente el formulario */
+}
+
+#searchForm input[type="text"] {
+  border-radius: 20px; /* Bordes redondeados del input */
+  padding: 0.5rem; /* Espaciado interno del input */
+}
+
+#searchForm button {
+  border-radius: 20px; /* Bordes redondeados del botón */
+  background-color: white; /* Fondo blanco para el botón */
+  border: none; /* Sin borde para el botón */
+  color: #f58d06; /* Color del ícono del botón */
+  padding: 0.5rem 1rem; /* Espaciado interno del botón */
+  margin-left: 0.5rem; /* Espaciado entre el input y el botón */
+}
+
+/* Estilo para las badges */
+.badge {
+  background-color: white; /* Fondo blanco para las badges */
+  color: #f58d06; /* Color del texto de las badges */
+  font-size: 0.875rem; /* Tamaño de fuente de las badges */
+  padding: 5px 10px; /* Espaciado en las badges */
+  border-radius: 12px; /* Bordes redondeados */
+}
+
+/* Estilo para los íconos */
+.nav-link i {
+  margin-right: 8px; /* Espaciado entre íconos y texto */
+}
+
+/* Estilo para el botón de búsqueda */
+.btn-light {
+  color: #f58d06; /* Color del ícono del botón */
+  border: 1px solid #f58d06; /* Borde del botón */
+}
+
+.btn-light:hover {
+  background-color: #f58d06; /* Fondo del botón al pasar el ratón */
+  color: white; /* Color del ícono del botón al pasar el ratón */
+}

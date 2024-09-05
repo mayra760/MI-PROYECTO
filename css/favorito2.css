@@ -11,7 +11,7 @@
 }
 
 .table thead {
-    background-color: #ff6f61; /* Color de fondo para el encabezado */
+    background-color: #f70505; /* Color de fondo para el encabezado */
     color: #fff; /* Color del texto */
 }
 
@@ -38,7 +38,7 @@
 }
 
 .table .btn-danger {
-    background-color: #ff4d4d; /* Color de fondo del botón eliminar */
+    background-color: #eb0606; /* Color de fondo del botón eliminar */
     border-color: #ff4d4d; /* Color del borde del botón eliminar */
     color: #fff; /* Color del texto del botón eliminar */
     border-radius: 5px;

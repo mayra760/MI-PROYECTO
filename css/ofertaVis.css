@@ -1,5 +1,4 @@
 body {
-    background: linear-gradient(to right, #7ED0D8, #E3FDFD);
     background-attachment: fixed;
     font-family: 'Arial', sans-serif;
     color: #333;
@@ -10,12 +9,12 @@ h1 {
     font-family: 'Arial', sans-serif;
     font-weight: bold;
 }
-
+ 
 .banner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #FF7E5F, #FD5D93);
+    background: linear-gradient(to right, #f7a308, #fc7404);
     padding: 20px;
     color: white;
     position: relative;

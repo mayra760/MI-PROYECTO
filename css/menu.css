@@ -1,0 +1,25 @@
+.custom-dropdown {
+    background-color: #fef4e8; /* Fondo suave para el menú */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  }
+  
+  .custom-dropdown .dropdown-item {
+    color: #333; /* Color de texto oscuro */
+    padding: 10px 20px; /* Espaciado adicional */
+    font-size: 16px; /* Tamaño de fuente más grande */
+    display: flex;
+    align-items: center; /* Alinear íconos y texto */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+  }
+  
+  .custom-dropdown .dropdown-item:hover {
+    background-color: #f58d06; /* Color de fondo al pasar el mouse */
+    color: #fff; /* Color de texto al pasar el mouse */
+  }
+  
+  .custom-dropdown .dropdown-item i {
+    margin-right: 10px; /* Espaciado entre ícono y texto */
+    font-size: 18px; /* Tamaño del ícono */
+  }
+  

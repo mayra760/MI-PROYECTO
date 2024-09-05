@@ -1,3 +1,5 @@
+<title>eliminar categorias</title>
+
 <br><br>
 <div class="row">
 <br><br><div class="card">

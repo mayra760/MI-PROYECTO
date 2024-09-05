@@ -57,7 +57,7 @@ if(isset($_GET['ediCate'])){
     if(Productos::editarCategoria($id_categoria,$categoria)==1){
         header("location:ctroBar.php?seccion=verCate");
     }
-}
+} 
 
 if(isset($_GET['bou'])){
     $id = $_POST['documento'];

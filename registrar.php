@@ -31,6 +31,13 @@
         <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required>
         <input type="checkbox" id="showPassword" onclick="visibilidadContraseña()"> Mostrar contraseña
     </div>
+    <div id="passwordRequirements" class="password-requirements">
+        <p id="passwordLength" class="error">La contraseña debe tener al menos 5 caracteres.</p>
+        <p id="passwordUppercase" class="error">Debe incluir al menos una letra mayúscula.</p>
+        <p id="passwordLowercase" class="error">Debe incluir al menos una letra minúscula.</p>
+        <p id="passwordNumber" class="error">Debe incluir al menos un número.</p>
+        <p id="passwordSpecial" class="error">Debe incluir al menos un carácter especial.</p>
+    </div>
     <br>
     <input type="date" name="fecha" placeholder="Fecha de nacimiento" required><br>
     <div class="form-check mt-3">
@@ -47,34 +54,23 @@
         <a href="login.php">Inicia sesión</a>
     </center>
 </form>
-
-<script>
-// Función para mostrar/ocultar la contraseña
-function visibilidadContraseña(fieldId = 'contraseña') {
-    const field = document.getElementById(fieldId);
-    const showPassword = document.getElementById(fieldId === 'contraseña' ? 'showPassword' : 'showConfirmPassword');
-    if (showPassword.checked) {
-        field.type = 'text';
-    } else {
-        field.type = 'password';
-    }
+<style>
+.password-requirements {
+    margin-top: 10px;
 }
-document.getElementById('registerForm').addEventListener('submit', function(event) {
-        const termsCheck = document.getElementById('termsCheck');
-        const privacyCheck = document.getElementById('privacyCheck');
-
-        if (!termsCheck.checked || !privacyCheck.checked) {
-            event.preventDefault(); // Evita el envío del formulario
-            alert('Debes aceptar los Términos y Condiciones y la Política de Privacidad antes de registrarte.');
-        }
-    });
-</script>
+.password-requirements p {
+    margin: 0;
+    color: red; /* Color rojo para los mensajes de error */
+    display: none; /* Ocultar mensajes por defecto */
+}
+</style>
         </div>
     </div>
     <!-- Incluir SweetAlert2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <!-- Incluir el archivo JavaScript con tus alertas personalizadas -->
     <script src="js/alertError.js"></script>
+    <script src="js/registroca.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 

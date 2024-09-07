@@ -62,9 +62,6 @@ class Productos{
     
     
 
-    
-
-
     public static function mostrarCate() {
         include_once("modelo.php");
         $salida = "";
@@ -118,13 +115,13 @@ class Productos{
     }
 
 
-    public static function agregarPro($id_pro, $id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img){
+    public static function agregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $imagen){
         include_once("modelo.php");
         $salida = 0;
-        $consulta = Modelo::sqlAgregarPro($id_pro, $id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $imagen);
+        $consulta = Modelo::sqlAgregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $imagen);
         if($consulta){ 
             $salida = 1;
-        }
+        } 
         return $salida;
 
     }
@@ -235,9 +232,8 @@ class Productos{
             $salida .= "<tr>"; 
             $salida .= "<td>" .$fila['id_conteo']. "</td>";
             $salida .= "<td>" .$fila['descripcion']. "</td>";
-            $salida .= "<td>" .$fila['docPro']. "</td>";
+
             $salida .= "<td>" .$fila['conteo']. "</td>";
-            $salida .= "<td>" .$fila['fec_eli']. "</td>";
             $salida .= "</tr>";
         }
         $salida .= "</table>";
@@ -263,7 +259,7 @@ class Productos{
 
     public static function mostrarUsuarios($buscaUser = null) {
         include_once("modelo.php");
-        $salida = "";
+        $salida = ""; 
         $consulta = Modelo::sqlMostrarUser($buscaUser);
         
         while($fila = $consulta->fetch_assoc()){
@@ -274,7 +270,6 @@ class Productos{
             $salida .= "<p><strong>Nombre:</strong> " . $fila['nombre'] . "</p>";
             $salida .= "<p><strong>Apellido:</strong> " . $fila['apellido'] . "</p>";
             $salida .= "<p><strong>Correo:</strong> " . $fila['correo'] . "</p>";
-            $salida .= "<p><strong>Fecha:</strong> " . $fila['fecha'] . "</p>";
             $salida .= "<p><strong>Rol:</strong> " . $fila['rol'] . "</p>";
             $salida .= "</div>";
             $salida .= "</div>";
@@ -389,7 +384,7 @@ public static function verAccesorios($categoria) {
         $salida .= "<strong> $" . $fila['precio'] . "</strong>";
 
         if (!empty($fila['ruta_img'])) {
-            $rutaImagen = "../imagenes/" . $fila['ruta_img'];
+            $rutaImagen = "../img/" . $fila['ruta_img'];
             $salida .= '<div class="imagen-container"><img src="' . $rutaImagen . '" alt="' . $fila['nombre_producto'] . '" class="img-thumbnail"></div>';
         } else {
             $salida .= "<p class='sin-imagen'>Imagen no disponible</p>";

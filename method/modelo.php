@@ -48,22 +48,28 @@ class Modelo{
         $sql="SELECT COUNT(*) as total FROM tb_usuarios WHERE documento = '$documento' OR correo = '$correo'";
         $resultado = $conexion->query($sql);
         $row=$resultado->fetch_assoc();
-        return $row['total'];
+        return $row['total']; 
         
     }
 
-    public static function sqlAgregarPro($id_pro, $id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img) {
+    public static function sqlAgregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img) {
         include("db_fashion/cb.php");
-        $sql = "INSERT INTO tb_productos (id_producto, id_categoria, nombre_producto, precio, cantidad, detalles, color, tallas, ruta_img) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO tb_productos (id_categoria, nombre_producto, precio, cantidad, detalles, color, tallas, ruta_img) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("iisdiisss", $id_pro, $id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img);
+        
+        // Asegúrate de que el tipo de datos sea correcto
+        $stmt->bind_param("iisdiiss", $id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img);
+        
+        // Ejecutar la consulta
         $resultado = $stmt->execute();
+        
+        // Cerrar la declaración y la conexión
         $stmt->close();
         $conexion->close();
+        
         return $resultado;
     }
-    
 
     public static function sqlMostrarPro($buscar = null) {
         include("db_fashion/cb.php");

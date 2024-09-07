@@ -38,11 +38,11 @@ class Usuarios{
         include_once("login_class.php");
     
         $consulta = Modelo::sqlPerfil($id);
-        $salida = "<div class='perfil-container'>";
+        $salida = "<div class='perfil-container'>"; 
     
         while ($fila = $consulta->fetch_assoc()) {
             // Definir la ruta de la foto o usar una predeterminada si no hay foto
-            $foto = !empty($fila['foto']) ? '../img/' . $fila['foto'] : '../img/user.webp';
+            $foto = !empty($fila['foto']) ? '../img/' . $fila['foto'] : '../img/foto.jpeg';
             $rol = Loguin::verRol($id); // Verificar el rol del usuario
             
             $salida .= "<div class='perfil-foto-container'>";
@@ -62,14 +62,13 @@ class Usuarios{
             $salida .= "<div class='perfil-item'><span>Apellido:</span> " . $fila['apellido'] . "</div>";
             $salida .= "<div class='perfil-item'><span>Correo:</span> " . $fila['correo'] . "</div>";
             $salida .= "<div class='perfil-item'><span>Contraseña:</span> " . $fila['contraseña'] . "</div>";
-            $salida .= "<div class='perfil-item'><span>Fecha de nacimiento:</span> " . $fila['fecha'] . "</div>";
             
             if(Loguin::verRol($id)==0){
                 $salida .= "<a class='btn btn-success' href='../admi/ctroBar.php?seccion=actuUser' role='button'><i class='fa fa-pencil-alt'></i> Editar</a><br>";
-                $salida .= "<a class='btn btn-danger' href='../ctroBar.php?seccion=ctroAdmi&eliCuenta=true'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
+                $salida .= "<a class='btn btn-danger' href='../admi/ctroBar.php?seccion=ctroAdmi&eliCuenta=true'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
             }else{
                 $salida .= "<a class='btn btn-success' href='../usuarios/conBaBus.php?seccion=actuUser' role='button'><i class='fa fa-pencil-alt'></i> Editar</a><br>";
-                $salida .= "<a class='btn btn-danger' href='../conBaBus.php?seccion=ctroUser&eliCuenta=true'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
+                $salida .= "<a class='btn btn-danger' href='../usuarios/conBaBus.php?seccion=ctroUser&eliCuenta=true'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
 
             }
             $salida .= "</div>";

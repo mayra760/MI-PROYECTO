@@ -3,7 +3,7 @@ include_once("login_class.php");
 if(!isset($_SESSION))session_start();
 if(!isset($_SESSION['id']))$_SESSION['id'] = 0;
 
-
+ 
 
 // Inicializar variables de sesión para manejo de intentos fallidos y bloqueo
 if (!isset($_SESSION['intentos_fallidos'])) {
@@ -83,78 +83,7 @@ if (isset($_GET['recorrido'])) {
             header("location:../usuarios/conBaBus.php");
             exit(); // Asegúrate de llamar a exit() después de redirigir
         } else {
-            echo "No se ha registrado";
+            header("location:../registrar.php?error=1"); // Ajusta la ruta según corresponda
         }
     }
-}
-
-
-
-
-// if ($recorrido == 2) {
-//     $nombre = $_POST['nombre'];
-//     $apellido = $_POST['apellido'];
-//     $correo = $_POST['correo'];
-//     $fecha = $_POST['fecha'];
-//     $contraseña = $_POST['contraseña']; // Asegúrate de que esta variable esté definida
-
-//     if (Loguin::registraUsuarios($documento, $nombre, $apellido, $correo, $contraseña, $fecha) == 2) {
-//         $_SESSION['id'] = $documento;
-//         header("location:../usuarios/conBaBus.php");
-//         exit();
-//     } else {
-//         echo "No se ha registrado";
-//     }
-// }
-
-
-// include_once("login_class.php");
-// if(!isset($_SESSION))session_start();
-// if(!isset($_SESSION['id']))$_SESSION['id'] = 0;
-
-
-// if (isset($_GET['recorrido'])) {
-//     $documento = $_POST['documento'];
-//     $contraseña = $_POST['contraseña'];
-
-//     if ($_GET['recorrido'] == 1) {
-//         if (Loguin::verificaUsuarios($documento, $contraseña)) {
-//             $_SESSION['id'] = $documento;
-
-//             // Redirigir según el rol del usuario
-//             if (Loguin::verRol($_SESSION['id']) == 1) {
-//                 header("Location: ../usuarios/conBaBus.php");
-//                 exit(); // Asegúrate de llamar a exit() después de redirigir
-//             } if(Loguin::verRol($_SESSION['id']) == 0) {
-//                 header("Location: ../admi/ctroBar.php");
-//                 exit(); // Asegúrate de llamar a exit() después de redirigir
-//             }
-//         } else {
-//             // Contraseña incorrecta o usuario no encontrado
-//             header("Location: ../login.php?error=1");
-//             exit(); // Asegúrate de llamar a exit() después de redirigir
-//         }
-//     }
-    
-
-//     if ($_GET['recorrido'] == 2) {
-//         $documento = $_POST['documento'];
-//         $nombre = $_POST['nombre'];
-//         $apellido = $_POST['apellido'];
-//         $correo = $_POST['correo'];
-//         $fecha = $_POST['fecha'];
-//         $contraseña = $_POST['contraseña']; // Asegúrate de que esta variable esté definida
-    
-//         if (Loguin::registraUsuarios($documento, $nombre, $apellido, $correo, $contraseña, $fecha) == 2) {
-//             $_SESSION['id'] = $documento;
-//             header("location:../usuarios/conBaBus.php");
-//         } else {
-//             echo "no se ha registrado";
-//         }
-//     }
-
-// }
-
-
-
-   
+}    

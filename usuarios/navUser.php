@@ -28,7 +28,7 @@
   </head>
   <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f58d06;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(250, 87, 22);">
     <div class="container-fluid">
       <a class="navbar-brand text-white" href="conBaBus.php?seccion=home">
         <h2><b>FASHION WORLD</b></h2>
@@ -41,11 +41,6 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="../facturacion/fechaEspecial.php">
               <i class="fas fa-calendar-alt"></i> Fechas Especiales
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="../facturacion/lista_deseos.php">
-              <i class="fas fa-heart"></i> Lista de Deseos
             </a>
           </li>
           <li class="nav-item">
@@ -81,7 +76,7 @@
         </ul>
       </div>
     </div>
-  </nav>
+</nav>
 
   <!-- Main content -->
   <div class="container">

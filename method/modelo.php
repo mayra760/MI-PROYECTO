@@ -50,26 +50,44 @@ class Modelo{
         $row=$resultado->fetch_assoc();
         return $row['total']; 
         
-    }
+    } 
 
     public static function sqlAgregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img) {
         include("db_fashion/cb.php");
+    
+        // Consulta SQL para insertar el producto
         $sql = "INSERT INTO tb_productos (id_categoria, nombre_producto, precio, cantidad, detalles, color, tallas, ruta_img) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conexion->prepare($sql);
-        
-        // Asegúrate de que el tipo de datos sea correcto
-        $stmt->bind_param("iisdiiss", $id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img);
-        
-        // Ejecutar la consulta
-        $resultado = $stmt->execute();
-        
-        // Cerrar la declaración y la conexión
-        $stmt->close();
-        $conexion->close();
-        
-        return $resultado;
+    
+        // Preparamos la consulta
+        if($stmt = $conexion->prepare($sql)) {
+            // Asegúrate de que los tipos de datos coincidan correctamente
+            // "iisdiiss" representa los tipos de datos: int, string, double, int, string, string, string, string
+            $stmt->bind_param("isdissss", 
+                $id_categoria,       // Entero (id_categoria)
+                $nombre,             // String (nombre_producto)
+                $precio,             // Double (precio)
+                $cantidad,           // Entero (cantidad)
+                $descripcion,        // String (detalles)
+                $color,              // String (color)
+                $tallas,             // String (tallas)
+                $ruta_img            // String (ruta_img)
+            );
+    
+            // Ejecutamos la consulta
+            $resultado = $stmt->execute();
+    
+            // Cerrar la declaración y la conexión
+            $stmt->close();
+            $conexion->close();
+    
+            return $resultado;
+        } else {
+            // En caso de error en la preparación de la consulta
+            return false;
+        }
     }
+    
 
     public static function sqlMostrarPro($buscar = null) {
         include("db_fashion/cb.php");

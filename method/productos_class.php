@@ -114,7 +114,7 @@ class Productos{
         return $salida;
     }
 
-
+ 
     public static function agregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $imagen){
         include_once("modelo.php");
         $salida = 0;

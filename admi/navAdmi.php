@@ -35,7 +35,7 @@
   </head>
   <body>
   <!-- class="navbar navbar-expand-lg navbar-light bg-light" -->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f58d06;">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(250, 87, 22);">
   <div class="container-fluid">
     <a class="navbar-brand text-white" href="ctroBar.php?seccion=homeAdmi">
       <h2><b>FASHION WORLD</b></h2>
@@ -87,6 +87,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" href="ctroBar.php?seccion=infoAdmi">Info Usuarios</a></li>
             <li><a class="dropdown-item" href="ctroBar.php?seccion=infoAdmiPro">Info Productos</a></li>
+            <li><a class="dropdown-item" href="../facturacion/fechaEspecial.php">Fechas Especiales</a></li>
           </ul>
         </li>
         <li class="nav-item">

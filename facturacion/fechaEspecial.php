@@ -31,7 +31,7 @@ $fechas = FechaEspecial::obtenerFechas();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">  
 </head>
 <body>
-<center><a href="../usuarios/conBaBus.php?seccion=home" class="btn btn-home"><i class="fas fa-home"> Home</i></a></center>
+<center><a href="../admi/ctroBar.php?seccion=homeAdmi" class="btn btn-home"><i class="fas fa-home"> Home</i></a></center>
 
     <h1>Fechas Especiales</h1>
     <h2>Agregar Nueva Fecha Especial</h2>

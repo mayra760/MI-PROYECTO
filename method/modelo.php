@@ -21,8 +21,8 @@ class Modelo{
 
     public static function sqlRegistar($documento,$nombre,$apellido,$correo,$contraseña,$fecha){
         include("db_fashion/cb.php");
-        $sql = "insert into tb_usuarios(documento,nombre,apellido,correo,contraseña,fecha,rol) ";
-        $sql .= "values('$documento','$nombre','$apellido','$correo','$contraseña','$fecha','1')";
+        $sql = "insert into tb_usuarios(documento,nombre,apellido,correo,contraseña,rol) ";
+        $sql .= "values('$documento','$nombre','$apellido','$correo','$contraseña','1')";
         #echo $sql;
         return $resultado = $conexion->query($sql); 
         

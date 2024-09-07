@@ -78,7 +78,7 @@ CREATE TABLE `tb_conteo_eli` (
   `conteo` int NOT NULL,
   `fec_reg` datetime NOT NULL,
   PRIMARY KEY (`id_conteo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,6 +87,7 @@ CREATE TABLE `tb_conteo_eli` (
 
 LOCK TABLES `tb_conteo_eli` WRITE;
 /*!40000 ALTER TABLE `tb_conteo_eli` DISABLE KEYS */;
+INSERT INTO `tb_conteo_eli` VALUES (1,'Se ha eliminado el usuario: maria con el documento: 12345',1,'2024-09-07 22:44:53'),(2,'Se ha eliminado el usuario: marcela con el documento: 123456',1,'2024-09-07 22:45:04'),(3,'Se ha eliminado el usuario: maria con el documento: 1235',1,'2024-09-07 22:45:16'),(4,'Se ha eliminado el usuario: ronal con el documento: 159',1,'2024-09-07 22:45:28'),(5,'Se ha eliminado el usuario: cindy con el documento: 123',1,'2024-09-07 22:45:42');
 /*!40000 ALTER TABLE `tb_conteo_eli` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,7 +405,7 @@ CREATE TABLE `tb_usuarios` (
   `apellido` varchar(30) NOT NULL,
   `correo` varchar(50) NOT NULL,
   `contraseña` varchar(255) DEFAULT NULL,
-  `fecha` varchar(30) NOT NULL,
+  `fecha` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `foto` varchar(2000) DEFAULT NULL,
   `rol` int NOT NULL,
   PRIMARY KEY (`documento`)
@@ -417,7 +418,7 @@ CREATE TABLE `tb_usuarios` (
 
 LOCK TABLES `tb_usuarios` WRITE;
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
-INSERT INTO `tb_usuarios` VALUES (123,'cindy','nero','cindy@gmail.com','321','2004-03-02','6e6a48600ac28f39d22ff3ff145a0982.jpg',1),(159,'ronal','lopez','ronal@gmail.com','$2y$12$QPdD5k./n.WTviHqa23MHufdSlNAg1qNSXPYE5mE3ZlEgBmpF4/y2','2024-08-16','66cf60d80a0ac.png',1),(1235,'maria','pp','mariaa@gmail.com','$2y$12$oxqn5Smdp3Gc3YCyujb9Pue0BPnvGVstfZ6SXL5jAf0MqSbcaOJEe','2024-09-03',NULL,1),(12345,'maria','pp','maria@gmail.com','$2y$12$Krdc25vybYpCrpDc/Xi9wu5dUHf4DBDZ0CKBJrzAO5ByQjkF8xoVy','2024-08-27',NULL,1),(123456,'marcela','florez','marcela@gmail.com','$2y$12$jUvcLJ7lE7QTJPurQWK9RO.xjcQ6ka7bjSuHNMcvfbyFeEoyCR0PW','2024-08-10','66cf3389d9983.png',1),(1029800016,'Salvador ','Pores','sg6184915@gmail.com','$2y$12$xYFm9yP7XIXcc9oHS5xDeudOq93mUqWnb.bmRsHGN079KF9p06JHq','',NULL,1),(1120561506,'mayra','simon','mayrahs760@gmail.com','$2y$12$3Ke4O3QGl8Rt/PFt9bdZO.mH8cZPeExxWmwpbUm.TX1K1PCB5vpqW','2005-03-14','66d622b6514cc.png',0);
+INSERT INTO `tb_usuarios` VALUES (1029800016,'Salvador ','Pores','sg6184915@gmail.com','$2y$12$xYFm9yP7XIXcc9oHS5xDeudOq93mUqWnb.bmRsHGN079KF9p06JHq','0000-00-00 00:00:00',NULL,1),(1120561506,'mayra','simon','mayrahs760@gmail.com','$2y$12$3Ke4O3QGl8Rt/PFt9bdZO.mH8cZPeExxWmwpbUm.TX1K1PCB5vpqW','2005-03-14 00:00:00','66d622b6514cc.png',0);
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -512,4 +513,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-07 13:44:11
+-- Dump completed on 2024-09-07 17:48:05

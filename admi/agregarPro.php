@@ -5,21 +5,16 @@
 <div class="container">
   <h2>Agregar Producto</h2>
   
-  <form action="ctroAdmi.php?" enctype="multipart/form-data">
+  <form action="ctroAdmi.php" method="POST" enctype="multipart/form-data">
     <!-- Imagen dentro del formulario -->
     <div class="form-flex">
       <!-- Contenedor de vista previa de la imagen -->
       <div class="image-preview">
         <img id="preview" src="../img/dedo.jpg" alt="Vista previa de la imagen">
-      </div>
+      </div> 
 
       <!-- Contenedor de formulario -->
       <div class="form-fields">
-        <div class="form-group">
-          <label for="id_producto">ID Producto:</label>
-          <input type="number" id="id_producto" name="id_producto">
-        </div>
-
         <div class="form-group">
           <label for="id_categoria">ID Categoría:</label>
           <select id="id_categoria" name="id_categoria" required>

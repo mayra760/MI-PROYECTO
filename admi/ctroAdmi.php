@@ -6,20 +6,29 @@ include_once('../method/modelo.php');
 if(!isset($_SESSION))session_start();
 
 //esto es para crear un producto
-if(isset($_GET['crear'])){
-    $id_pro = $_GET['id_producto'];
-    $id_categoria = $_GET['id_categoria'];
-    $nombre = $_GET['nombre'];
-    $precio = $_GET['precio'];
-    $cantidad = $_GET['cantidad'];
-    $descripcion = $_GET['descripcion'];
-    $color = $_GET['color'];
-    $tallas = $_GET['tallas'];
-    $imagen = $_FILES['ruta_img'];
-    
+if(isset($_POST['crear'])){
+    // Recibir los datos del formulario
+    $id_categoria = $_POST['id_categoria'];
+    $nombre = $_POST['nombre'];
+    $precio = $_POST['precio'];
+    $cantidad = $_POST['cantidad'];
+    $descripcion = $_POST['descripcion'];
+    $color = $_POST['color'];
+    $tallas = $_POST['tallas'];
+    $imagen = $_FILES['imagen'];
 
-    if( Productos::agregarPro($id_pro, $id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img) == 1){
-        header("location:ctroBar.php?seccion=verPro");
+    // Definir el directorio de destino
+    $target_dir = "../img/"; // Ajusta esta ruta según donde desees guardar la imagen
+    $target_file = $target_dir . basename($imagen["name"]);
+    
+    // Verificar si la imagen se subió correctamente
+    if (move_uploaded_file($imagen["tmp_name"], $target_file)) {
+        // Llama a la función para agregar el producto, pasando el nombre de la imagen
+        if(Productos::agregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $target_file) == 1){
+            header("location:ctroBar.php?seccion=verPro");
+        }
+    } else {
+        echo "Lo siento, hubo un error al subir la imagen.";
     }
 }
 

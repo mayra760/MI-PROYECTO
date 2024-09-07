@@ -42,7 +42,7 @@
       <label for="cantidad">Cantidad:</label>
       <input type="number" id="cantidad" name="cantidad">
     </div>
-
+ 
     <div class="form-group">
       <label for="descripcion">Descripción:</label>
       <textarea id="descripcion" name="descripcion" rows="4"></textarea>

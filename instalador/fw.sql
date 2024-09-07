@@ -29,7 +29,7 @@ CREATE TABLE `tb_carrito` (
   `precio_pro` float NOT NULL,
   `fecha_agre` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_ca`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE `tb_conteo_productos` (
   `conteo` int NOT NULL,
   `fec_reg` datetime NOT NULL,
   PRIMARY KEY (`id_conteo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -112,7 +112,7 @@ CREATE TABLE `tb_conteo_productos` (
 
 LOCK TABLES `tb_conteo_productos` WRITE;
 /*!40000 ALTER TABLE `tb_conteo_productos` DISABLE KEYS */;
-INSERT INTO `tb_conteo_productos` VALUES (1,'Se ha eliminado el producto: vestido con el ID: 3',1,'2024-09-02 17:37:13');
+INSERT INTO `tb_conteo_productos` VALUES (1,'Se ha eliminado el producto: vestido con el ID: 3',1,'2024-09-02 17:37:13'),(2,'Se ha eliminado el producto: vestido con el ID: 12',1,'2024-09-06 19:54:53'),(3,'Se ha eliminado el producto: maria con el ID: 7',1,'2024-09-06 20:10:35'),(4,'Se ha eliminado el producto: maria con el ID: 8',1,'2024-09-06 20:10:42'),(5,'Se ha eliminado el producto: camisa con el ID: 9',1,'2024-09-06 20:34:14'),(6,'Se ha eliminado el producto: CAMISA con el ID: 10',1,'2024-09-06 22:42:29'),(7,'Se ha eliminado el producto: maria con el ID: 11',1,'2024-09-06 22:42:32'),(8,'Se ha eliminado el producto: 0 con el ID: 12',1,'2024-09-06 22:42:38'),(9,'Se ha eliminado el producto: 0 con el ID: 13',1,'2024-09-06 23:23:08'),(10,'Se ha eliminado el producto: 0 con el ID: 14',1,'2024-09-06 23:23:12'),(11,'Se ha eliminado el producto: 0 con el ID: 15',1,'2024-09-06 23:23:15'),(12,'Se ha eliminado el producto: 0 con el ID: 16',1,'2024-09-07 12:42:09'),(13,'Se ha eliminado el producto: 0 con el ID: 17',1,'2024-09-07 12:47:58');
 /*!40000 ALTER TABLE `tb_conteo_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,7 +129,7 @@ CREATE TABLE `tb_conteo_reg` (
   `conteo` int NOT NULL,
   `fec_reg` datetime NOT NULL,
   PRIMARY KEY (`id_conteo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,6 +138,7 @@ CREATE TABLE `tb_conteo_reg` (
 
 LOCK TABLES `tb_conteo_reg` WRITE;
 /*!40000 ALTER TABLE `tb_conteo_reg` DISABLE KEYS */;
+INSERT INTO `tb_conteo_reg` VALUES (1,'Se ha registrado el usuario: Salvador  con el documento: 1029800016',1,'2024-09-06 20:58:46');
 /*!40000 ALTER TABLE `tb_conteo_reg` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +243,7 @@ CREATE TABLE `tb_fecha_especial` (
   `fecha_fin` date NOT NULL,
   `color_evento` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,6 +252,7 @@ CREATE TABLE `tb_fecha_especial` (
 
 LOCK TABLES `tb_fecha_especial` WRITE;
 /*!40000 ALTER TABLE `tb_fecha_especial` DISABLE KEYS */;
+INSERT INTO `tb_fecha_especial` VALUES (5,'dia de la madre','2024-09-14','2024-09-06','naranja');
 /*!40000 ALTER TABLE `tb_fecha_especial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -296,7 +298,7 @@ CREATE TABLE `tb_likes` (
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `tb_likes_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `tb_productos` (`id_producto`) ON DELETE CASCADE,
   CONSTRAINT `tb_likes_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `tb_usuarios` (`documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -305,7 +307,7 @@ CREATE TABLE `tb_likes` (
 
 LOCK TABLES `tb_likes` WRITE;
 /*!40000 ALTER TABLE `tb_likes` DISABLE KEYS */;
-INSERT INTO `tb_likes` VALUES (3,5,1235,'like'),(4,1,12345,'like'),(10,5,12345,'like'),(14,6,159,'like'),(15,5,159,'like');
+INSERT INTO `tb_likes` VALUES (3,5,1235,'like'),(4,1,12345,'like'),(10,5,12345,'like'),(14,6,159,'like'),(15,5,159,'like'),(17,4,1029800016,'like');
 /*!40000 ALTER TABLE `tb_likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -325,7 +327,7 @@ CREATE TABLE `tb_lista_deseos` (
   PRIMARY KEY (`id_deseo`),
   KEY `documento_usuario` (`documento`),
   CONSTRAINT `tb_lista_deseos_ibfk_1` FOREIGN KEY (`documento`) REFERENCES `tb_usuarios` (`documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,7 +348,7 @@ DROP TABLE IF EXISTS `tb_productos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_productos` (
-  `id_producto` int NOT NULL,
+  `id_producto` int NOT NULL AUTO_INCREMENT,
   `nombre_producto` varchar(150) NOT NULL,
   `precio` float NOT NULL,
   `cantidad` int NOT NULL,
@@ -358,7 +360,7 @@ CREATE TABLE `tb_productos` (
   PRIMARY KEY (`id_producto`),
   KEY `fk_categoria` (`id_categoria`),
   CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categoria` (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -367,7 +369,7 @@ CREATE TABLE `tb_productos` (
 
 LOCK TABLES `tb_productos` WRITE;
 /*!40000 ALTER TABLE `tb_productos` DISABLE KEYS */;
-INSERT INTO `tb_productos` VALUES (1,'vestido para dama',65000,5,'vestido para dama para distinta ocasión','beige','tallas s','../img\\66cf3a8890c09.png',1),(4,'aretes',70000,3,'esto son unos accesorios','dorados',NULL,'DSF.png',5),(5,'camisa',35,3,'conjunto elegante','rojo','talla M','../img\\mujer8.png',1),(6,'conjunto de bebe',40000,2,'este es un conjunto para bebe','vinotinto','talla 2','infantil3.png',3),(12,'vestido',50000,10,'vestido','negro','talla m','../img/66cf377662e90.png',1);
+INSERT INTO `tb_productos` VALUES (1,'vestido para dama',65000,5,'vestido para dama para distinta ocasión','beige','tallas s','../img\\66cf3a8890c09.png',1),(2,'aretes',70000,3,'esto son unos accesorios','dorados',NULL,'DSF.png',5),(3,'camisa',35,3,'conjunto elegante','rojo','talla M','../img\\mujer8.png',1),(4,'conjunto de bebe',40000,2,'este es un conjunto para bebe','vinotinto','talla 2','infantil3.png',3),(18,'camisa',45000,3,'asjoalkjslak','negro','tallas s','../img/349320471_652291616742018_3142796312808005228_n.jpg',1);
 /*!40000 ALTER TABLE `tb_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -415,7 +417,7 @@ CREATE TABLE `tb_usuarios` (
 
 LOCK TABLES `tb_usuarios` WRITE;
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
-INSERT INTO `tb_usuarios` VALUES (123,'cindy','nero','cindy@gmail.com','321','2004-03-02','6e6a48600ac28f39d22ff3ff145a0982.jpg',1),(159,'ronal','lopez','ronal@gmail.com','$2y$12$QPdD5k./n.WTviHqa23MHufdSlNAg1qNSXPYE5mE3ZlEgBmpF4/y2','2024-08-16','66cf60d80a0ac.png',1),(1235,'maria','pp','mariaa@gmail.com','$2y$12$oxqn5Smdp3Gc3YCyujb9Pue0BPnvGVstfZ6SXL5jAf0MqSbcaOJEe','2024-09-03',NULL,1),(12345,'maria','pp','maria@gmail.com','$2y$12$Krdc25vybYpCrpDc/Xi9wu5dUHf4DBDZ0CKBJrzAO5ByQjkF8xoVy','2024-08-27',NULL,1),(123456,'marcela','florez','marcela@gmail.com','$2y$12$jUvcLJ7lE7QTJPurQWK9RO.xjcQ6ka7bjSuHNMcvfbyFeEoyCR0PW','2024-08-10','66cf3389d9983.png',1),(1120561506,'mayra','simon','mayrahs760@gmail.com','$2y$12$3Ke4O3QGl8Rt/PFt9bdZO.mH8cZPeExxWmwpbUm.TX1K1PCB5vpqW','2005-03-14','66d622b6514cc.png',0);
+INSERT INTO `tb_usuarios` VALUES (123,'cindy','nero','cindy@gmail.com','321','2004-03-02','6e6a48600ac28f39d22ff3ff145a0982.jpg',1),(159,'ronal','lopez','ronal@gmail.com','$2y$12$QPdD5k./n.WTviHqa23MHufdSlNAg1qNSXPYE5mE3ZlEgBmpF4/y2','2024-08-16','66cf60d80a0ac.png',1),(1235,'maria','pp','mariaa@gmail.com','$2y$12$oxqn5Smdp3Gc3YCyujb9Pue0BPnvGVstfZ6SXL5jAf0MqSbcaOJEe','2024-09-03',NULL,1),(12345,'maria','pp','maria@gmail.com','$2y$12$Krdc25vybYpCrpDc/Xi9wu5dUHf4DBDZ0CKBJrzAO5ByQjkF8xoVy','2024-08-27',NULL,1),(123456,'marcela','florez','marcela@gmail.com','$2y$12$jUvcLJ7lE7QTJPurQWK9RO.xjcQ6ka7bjSuHNMcvfbyFeEoyCR0PW','2024-08-10','66cf3389d9983.png',1),(1029800016,'Salvador ','Pores','sg6184915@gmail.com','$2y$12$xYFm9yP7XIXcc9oHS5xDeudOq93mUqWnb.bmRsHGN079KF9p06JHq','',NULL,1),(1120561506,'mayra','simon','mayrahs760@gmail.com','$2y$12$3Ke4O3QGl8Rt/PFt9bdZO.mH8cZPeExxWmwpbUm.TX1K1PCB5vpqW','2005-03-14','66d622b6514cc.png',0);
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -510,4 +512,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-02 21:30:56
+-- Dump completed on 2024-09-07 13:44:11

@@ -1,10 +1,4 @@
-<?php
-session_start(); // Iniciar la sesión
-if (!isset($_SESSION['usuario'])) {
-    header("Location: ../login.php");
-    exit();
-}
-?>
+
 
 <head>
     <title>Vistas</title>

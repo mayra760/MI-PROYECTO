@@ -59,6 +59,22 @@ class Productos{
     
         return $salida;
     }
+    public static function obtenerCategorias() {
+        include_once("modelo.php");
+        $categorias = [];
+        $consulta = Modelo::sqlVerCate(); // Asegúrate de que esta función devuelva un objeto con el resultado de la consulta
+    
+        // Verifica si hay resultados
+        if ($consulta->num_rows > 0) {
+            while ($fila = $consulta->fetch_assoc()) {
+                $categorias[] = [
+                    'id' => $fila['id_categoria'],
+                    'nombre' => $fila['categoria']
+                ];
+            }
+        }
+        return $categorias; // Retorna el array de categorías
+    }
     
     
 
@@ -221,7 +237,7 @@ class Productos{
         $salida .= "</table>";
         return $salida; 
     }
-
+ 
     public static function mostrarConteoProductos(){
         include_once("modelo.php");
         $salida = "";

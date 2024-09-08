@@ -39,7 +39,7 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link text-white" href="../facturacion/fechaEspecial.php">
+            <a class="nav-link text-white" href="fecha_especial.php">
               <i class="fas fa-calendar-alt"></i> Fechas Especiales
             </a>
           </li>

@@ -1,10 +1,10 @@
 <head>
-  <title>agregar productos</title>
+  <title>Agregar Productos</title>
   <link rel="stylesheet" href="../css/agregarPro.css">
 </head>
 <div class="container">
   <h2>Agregar Producto</h2>
-  
+
   <form action="ctroAdmi.php" method="POST" enctype="multipart/form-data">
     <!-- Imagen dentro del formulario -->
     <div class="form-flex">
@@ -19,10 +19,15 @@
           <label for="id_categoria">ID Categoría:</label>
           <select id="id_categoria" name="id_categoria" required>
             <option value="">Selecciona una categoría</option>
-            <option value="1">Damas y caballeros</option>
-            <option value="3">Ropa infantil</option>
-            <option value="4">Calzado para todos</option>
-            <option value="5">Accesorios para todos</option>
+            <?php
+            include_once("modelo.php"); // Incluye el modelo para poder acceder a la base de datos
+
+            // Obtener categorías desde la base de datos
+            $categorias = Productos::obtenerCategorias(); // Llama a la nueva función
+            foreach ($categorias as $categoria) {
+                echo "<option value='" . $categoria['id'] . "'>" . $categoria['nombre'] . "</option>";
+            }
+            ?>
           </select>
         </div>
 
@@ -70,4 +75,3 @@
 </div>
 
 <script src="../js/imgPrevia.js"></script>
-

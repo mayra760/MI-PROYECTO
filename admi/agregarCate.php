@@ -13,4 +13,4 @@
         </div>
         <input type="submit" id="b_cate" value="Agregar Categoría"><br>
       </form>
-    </div>
+    </div>  

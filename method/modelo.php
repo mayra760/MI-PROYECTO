@@ -121,9 +121,12 @@ class Modelo{
 
     public static function sqlEliminarCate($id) {
         include("db_fashion/cb.php");
+        $sqlEliminarProductos = "DELETE FROM tb_productos WHERE id_categoria = '$id'";
+        $conexion->query($sqlEliminarProductos);
         $sql = "DELETE FROM tb_categoria WHERE id_categoria = '$id'";
-        return $resultado = $conexion->query($sql);
+        return $conexion->query($sql);
     }
+    
     
 
     public static function sqlCategorias($des,$idCate){
@@ -213,7 +216,7 @@ class Modelo{
                 
         return $resultado = $conexion->query($sql);
     }
-    
+     
 
     public static function sqlConteoEli(){
         include("db_fashion/cb.php");

@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
   <head>
-     <!-- Google tag (gtag.js) -->
-     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW395SN41J"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-MW395SN41J');
-        </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MW395SN41J"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MW395SN41J');
+    </script>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,11 +24,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <title>HOME USER</title>
+    <title>inicio</title>
   </head>
   <body>
   <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(250, 87, 22);">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(250, 87, 22);">
     <div class="container-fluid">
       <a class="navbar-brand text-white" href="conBaBus.php?seccion=home">
         <h2><b>FASHION WORLD</b></h2>
@@ -41,6 +41,11 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="fecha_especial.php">
               <i class="fas fa-calendar-alt"></i> Fechas Especiales
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="newCate.php">
+              <i class="fas fa-star"></i> Nuevas Categorías
             </a>
           </li>
           <li class="nav-item">
@@ -71,7 +76,6 @@
                   <i class="fas fa-user"></i> Mi perfil
                 </a></li>
               </ul>
-
           </li>
         </ul>
       </div>

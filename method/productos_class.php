@@ -214,7 +214,6 @@ class Productos{
             $salida .= "<tr>"; 
             $salida .= "<td>" .$fila['id_conteo']. "</td>";
             $salida .= "<td>" .$fila['descripcion']. "</td>";
-            $salida .= "<td>" .$fila['docUser']. "</td>";
             $salida .= "<td>" .$fila['conteo']. "</td>";
             $salida .= "<td>" .$fila['fec_reg']. "</td>";
             $salida .= "</tr>";
@@ -232,7 +231,6 @@ class Productos{
             $salida .= "<tr>"; 
             $salida .= "<td>" .$fila['id_conteo']. "</td>";
             $salida .= "<td>" .$fila['descripcion']. "</td>";
-
             $salida .= "<td>" .$fila['conteo']. "</td>";
             $salida .= "</tr>";
         }

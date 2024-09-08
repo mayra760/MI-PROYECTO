@@ -1,5 +1,10 @@
 <?php
-session_start();
+
+session_start(); // Iniciar la sesión
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
 include 'plantill2.php';
 ?>
 <head>

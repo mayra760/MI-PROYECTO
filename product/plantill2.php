@@ -18,7 +18,7 @@
       </head>
 <body>
       <!-- class="navbar navbar-expand-lg navbar-light bg-light" -->
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #f58d06;">
+      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(250, 87, 22);">
   <div class="container-fluid">
     <a class="navbar-brand" href="../usuarios/conBaBus.php?seccion=home">
       <h1 class="navbar-title"><b>FASHION WORLD</b></h1>

@@ -1,4 +1,11 @@
 
+<?php
+session_start(); // Iniciar la sesión
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
+?>
 <head>
     <title><?php echo 'CATEGORIAS'; ?></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -7,7 +14,7 @@
     <link href="../css/stylePro.css" rel="stylesheet">
     
 </head>
-<body> 
+<body>  
 <?php 
 include '../product/plantill2.php';
 include_once '../method/productos_class.php';

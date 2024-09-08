@@ -1,3 +1,10 @@
+<?php
+session_start(); // Iniciar la sesión
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
+?>
 <head>
     <title><?php echo 'accesorios'; ?></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -8,7 +15,7 @@
 
 </head>
 <body> 
-    <?php
+    <?php 
     include '../product/plantill2.php';
     include_once '../method/productos_class.php';
     ?>

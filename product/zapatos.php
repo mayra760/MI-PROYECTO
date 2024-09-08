@@ -1,3 +1,10 @@
+<?php
+session_start(); // Iniciar la sesión
+if (!isset($_SESSION['usuario'])) {
+    header("Location: ../login.php");
+    exit();
+}
+?>
 <head>
     <title><?php echo 'Zapatos'; ?></title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">

@@ -46,14 +46,14 @@ class Usuarios{
             $rol = Loguin::verRol($id); // Verificar el rol del usuario
             
             $salida .= "<div class='perfil-foto-container'>";
-            if($rol==0){
+            if($rol == 0){
                 echo "<h1><center>Perfil del Administrador</center></h1>";
                 $salida .= "<img id='perfilFoto' src='" . $foto . "' alt='Foto de perfil' class='perfil-foto' onclick='document.getElementById(\"inputFoto\").click();'>";
                 $salida .= "<input type='file' id='inputFoto' style='display: none;' onchange='cambiarFotoAdmi()'>";
-            }else{
+            } else {
+                echo "<h1><center>Perfil del Usuario</center></h1>";
                 $salida .= "<img id='perfilFoto' src='" . $foto . "' alt='Foto de perfil' class='perfil-foto' onclick='document.getElementById(\"inputFoto\").click();'>";
                 $salida .= "<input type='file' id='inputFoto' style='display: none;' onchange='cambiarFoto()'>";
-    
             }
             $salida .= "</div>";
             $salida .= "<div class='perfil-datos'>";
@@ -63,13 +63,12 @@ class Usuarios{
             $salida .= "<div class='perfil-item'><span>Correo:</span> " . $fila['correo'] . "</div>";
             $salida .= "<div class='perfil-item'><span>Contraseña:</span> " . $fila['contraseña'] . "</div>";
             
-            if(Loguin::verRol($id)==0){
+            if($rol == 0){
                 $salida .= "<a class='btn btn-success' href='../admi/ctroBar.php?seccion=actuUser' role='button'><i class='fa fa-pencil-alt'></i> Editar</a><br>";
-                $salida .= "<a class='btn btn-danger' href='../admi/ctroBar.php?seccion=ctroAdmi&eliCuenta=true'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
-            }else{
+                $salida .= "<a class='btn btn-danger' href='../admi/ctroBar.php?seccion=ctroAdmi&eliCuenta=true' onclick='return confirm(\"¿Estás seguro de que deseas eliminar la cuenta?\")'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
+            } else {
                 $salida .= "<a class='btn btn-success' href='../usuarios/conBaBus.php?seccion=actuUser' role='button'><i class='fa fa-pencil-alt'></i> Editar</a><br>";
-                $salida .= "<a class='btn btn-danger' href='../usuarios/conBaBus.php?seccion=ctroUser&eliCuenta=true'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
-
+                $salida .= "<a class='btn btn-danger' href='../usuarios/conBaBus.php?seccion=ctroUser&eliCuenta=true' onclick='return confirm(\"¿Estás seguro de que deseas eliminar la cuenta?\")'><i class='fas fa-trash-alt'></i> Eliminar cuenta</a>";
             }
             $salida .= "</div>";
         }
@@ -77,6 +76,7 @@ class Usuarios{
         $salida .= "</div>";
         return $salida;
     }
+    
     
 
 }

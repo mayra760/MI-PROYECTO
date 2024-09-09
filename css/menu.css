@@ -14,7 +14,7 @@
   }
   
   .custom-dropdown .dropdown-item:hover {
-    background-color: #f58d06; /* Color de fondo al pasar el mouse */
+    background-color: rgb(250, 87, 22);/* Color de fondo al pasar el mouse */
     color: #fff; /* Color de texto al pasar el mouse */
   }
   

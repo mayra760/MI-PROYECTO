@@ -29,7 +29,7 @@ CREATE TABLE `tb_carrito` (
   `precio_pro` float NOT NULL,
   `fecha_agre` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_ca`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,10 +49,10 @@ DROP TABLE IF EXISTS `tb_categoria`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_categoria` (
-  `id_categoria` int NOT NULL,
+  `id_categoria` int NOT NULL AUTO_INCREMENT,
   `categoria` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `tb_categoria` (
 
 LOCK TABLES `tb_categoria` WRITE;
 /*!40000 ALTER TABLE `tb_categoria` DISABLE KEYS */;
-INSERT INTO `tb_categoria` VALUES (1,'Ropa para Damas y caballeros'),(3,'ropa infantil'),(4,'calzado para todos'),(5,'accesorios para todos');
+INSERT INTO `tb_categoria` VALUES (1,'Ropa para Damas y caballeros'),(3,'ropa infantil'),(4,'calzado para todos'),(5,'accesorios'),(6,'sabanas');
 /*!40000 ALTER TABLE `tb_categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,7 +104,7 @@ CREATE TABLE `tb_conteo_productos` (
   `conteo` int NOT NULL,
   `fec_reg` datetime NOT NULL,
   PRIMARY KEY (`id_conteo`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `tb_conteo_productos` (
 
 LOCK TABLES `tb_conteo_productos` WRITE;
 /*!40000 ALTER TABLE `tb_conteo_productos` DISABLE KEYS */;
-INSERT INTO `tb_conteo_productos` VALUES (1,'Se ha eliminado el producto: vestido con el ID: 3',1,'2024-09-02 17:37:13'),(2,'Se ha eliminado el producto: vestido con el ID: 12',1,'2024-09-06 19:54:53'),(3,'Se ha eliminado el producto: maria con el ID: 7',1,'2024-09-06 20:10:35'),(4,'Se ha eliminado el producto: maria con el ID: 8',1,'2024-09-06 20:10:42'),(5,'Se ha eliminado el producto: camisa con el ID: 9',1,'2024-09-06 20:34:14'),(6,'Se ha eliminado el producto: CAMISA con el ID: 10',1,'2024-09-06 22:42:29'),(7,'Se ha eliminado el producto: maria con el ID: 11',1,'2024-09-06 22:42:32'),(8,'Se ha eliminado el producto: 0 con el ID: 12',1,'2024-09-06 22:42:38'),(9,'Se ha eliminado el producto: 0 con el ID: 13',1,'2024-09-06 23:23:08'),(10,'Se ha eliminado el producto: 0 con el ID: 14',1,'2024-09-06 23:23:12'),(11,'Se ha eliminado el producto: 0 con el ID: 15',1,'2024-09-06 23:23:15'),(12,'Se ha eliminado el producto: 0 con el ID: 16',1,'2024-09-07 12:42:09'),(13,'Se ha eliminado el producto: 0 con el ID: 17',1,'2024-09-07 12:47:58');
+INSERT INTO `tb_conteo_productos` VALUES (1,'Se ha eliminado el producto: vestido con el ID: 3',1,'2024-09-02 17:37:13'),(2,'Se ha eliminado el producto: vestido con el ID: 12',1,'2024-09-06 19:54:53'),(3,'Se ha eliminado el producto: maria con el ID: 7',1,'2024-09-06 20:10:35'),(4,'Se ha eliminado el producto: maria con el ID: 8',1,'2024-09-06 20:10:42'),(5,'Se ha eliminado el producto: camisa con el ID: 9',1,'2024-09-06 20:34:14'),(6,'Se ha eliminado el producto: CAMISA con el ID: 10',1,'2024-09-06 22:42:29'),(7,'Se ha eliminado el producto: maria con el ID: 11',1,'2024-09-06 22:42:32'),(8,'Se ha eliminado el producto: 0 con el ID: 12',1,'2024-09-06 22:42:38'),(9,'Se ha eliminado el producto: 0 con el ID: 13',1,'2024-09-06 23:23:08'),(10,'Se ha eliminado el producto: 0 con el ID: 14',1,'2024-09-06 23:23:12'),(11,'Se ha eliminado el producto: 0 con el ID: 15',1,'2024-09-06 23:23:15'),(12,'Se ha eliminado el producto: 0 con el ID: 16',1,'2024-09-07 12:42:09'),(13,'Se ha eliminado el producto: 0 con el ID: 17',1,'2024-09-07 12:47:58'),(14,'Se ha eliminado el producto: camisa con el ID: 18',1,'2024-09-09 16:19:44'),(15,'Se ha eliminado el producto: zapatos  con el ID: 21',1,'2024-09-09 16:28:53'),(16,'Se ha eliminado el producto: aretes con el ID: 2',1,'2024-09-09 16:30:42'),(17,'Se ha eliminado el producto: vestido para dama con el ID: 1',1,'2024-09-09 16:31:15'),(18,'Se ha eliminado el producto: camisa con el ID: 3',1,'2024-09-09 17:01:56');
 /*!40000 ALTER TABLE `tb_conteo_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -130,7 +130,7 @@ CREATE TABLE `tb_conteo_reg` (
   `conteo` int NOT NULL,
   `fec_reg` datetime NOT NULL,
   PRIMARY KEY (`id_conteo`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +139,7 @@ CREATE TABLE `tb_conteo_reg` (
 
 LOCK TABLES `tb_conteo_reg` WRITE;
 /*!40000 ALTER TABLE `tb_conteo_reg` DISABLE KEYS */;
-INSERT INTO `tb_conteo_reg` VALUES (1,'Se ha registrado el usuario: Salvador  con el documento: 1029800016',1,'2024-09-06 20:58:46');
+INSERT INTO `tb_conteo_reg` VALUES (1,'Se ha registrado el usuario: Salvador  con el documento: 1029800016',1,'2024-09-06 20:58:46'),(2,'Se ha registrado el usuario: andri con el documento: 1120571819',1,'2024-09-09 16:02:19');
 /*!40000 ALTER TABLE `tb_conteo_reg` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,7 +299,7 @@ CREATE TABLE `tb_likes` (
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `tb_likes_ibfk_1` FOREIGN KEY (`producto_id`) REFERENCES `tb_productos` (`id_producto`) ON DELETE CASCADE,
   CONSTRAINT `tb_likes_ibfk_2` FOREIGN KEY (`usuario_id`) REFERENCES `tb_usuarios` (`documento`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -308,7 +308,7 @@ CREATE TABLE `tb_likes` (
 
 LOCK TABLES `tb_likes` WRITE;
 /*!40000 ALTER TABLE `tb_likes` DISABLE KEYS */;
-INSERT INTO `tb_likes` VALUES (3,5,1235,'like'),(4,1,12345,'like'),(10,5,12345,'like'),(14,6,159,'like'),(15,5,159,'like'),(17,4,1029800016,'like');
+INSERT INTO `tb_likes` VALUES (3,5,1235,'like'),(10,5,12345,'like'),(14,6,159,'like'),(15,5,159,'like'),(17,4,1029800016,'like'),(18,19,1120571819,'like');
 /*!40000 ALTER TABLE `tb_likes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +353,7 @@ CREATE TABLE `tb_productos` (
   `nombre_producto` varchar(150) NOT NULL,
   `precio` float NOT NULL,
   `cantidad` int NOT NULL,
-  `detalles` varchar(150) NOT NULL,
+  `detalles` varchar(1000) DEFAULT NULL,
   `color` varchar(50) DEFAULT NULL,
   `tallas` varchar(50) DEFAULT NULL,
   `ruta_img` varchar(250) DEFAULT NULL,
@@ -361,7 +361,7 @@ CREATE TABLE `tb_productos` (
   PRIMARY KEY (`id_producto`),
   KEY `fk_categoria` (`id_categoria`),
   CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,7 +370,7 @@ CREATE TABLE `tb_productos` (
 
 LOCK TABLES `tb_productos` WRITE;
 /*!40000 ALTER TABLE `tb_productos` DISABLE KEYS */;
-INSERT INTO `tb_productos` VALUES (1,'vestido para dama',65000,5,'vestido para dama para distinta ocasión','beige','tallas s','../img\\66cf3a8890c09.png',1),(2,'aretes',70000,3,'esto son unos accesorios','dorados',NULL,'DSF.png',5),(3,'camisa',35,3,'conjunto elegante','rojo','talla M','../img\\mujer8.png',1),(4,'conjunto de bebe',40000,2,'este es un conjunto para bebe','vinotinto','talla 2','infantil3.png',3),(18,'camisa',45000,3,'asjoalkjslak','negro','tallas s','../img/349320471_652291616742018_3142796312808005228_n.jpg',1);
+INSERT INTO `tb_productos` VALUES (4,'conjunto de bebe',40000,3,'este es un conjunto para bebe','vinotinto','talla 2','infantil3.png',3),(19,'camisa',34000,2,'esta es una camisa','negro','talla M','../img/camisa.png',1),(20,'cojunto de piezas para hombre',59000,3,'contiene estampado grafico, cuello redondo, manga corta','negro','talla M','../img/hombre3.png',1),(22,'conjunto para  mujer',89000,3,'conjunto de verano para mujer, muy comodo y de una muy buena calidad','blanco','talla s','../img/mujer.png',1),(23,'zapatos ',67000,3,'zapatos para niño para correr de un buen material','azul','talla 30','../img/zapato.png',4),(24,'puños para orejas',4000,5,'set de 5 piezas de puños para orejas de estilo Boho y Hip Hop para Mujer - No Requiere Perforación, Pendientes de Clip de Hierro para Uso Diario y Fiestas','dorado','unica','../img/accesorio1.png',5);
 /*!40000 ALTER TABLE `tb_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -418,7 +418,7 @@ CREATE TABLE `tb_usuarios` (
 
 LOCK TABLES `tb_usuarios` WRITE;
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
-INSERT INTO `tb_usuarios` VALUES (1029800016,'Salvador ','Pores','sg6184915@gmail.com','$2y$12$xYFm9yP7XIXcc9oHS5xDeudOq93mUqWnb.bmRsHGN079KF9p06JHq','0000-00-00 00:00:00',NULL,1),(1120561506,'mayra','simon','mayrahs760@gmail.com','$2y$12$3Ke4O3QGl8Rt/PFt9bdZO.mH8cZPeExxWmwpbUm.TX1K1PCB5vpqW','2005-03-14 00:00:00','66d622b6514cc.png',0);
+INSERT INTO `tb_usuarios` VALUES (1029800016,'Salvador ','Pores','sg6184915@gmail.com','$2y$12$xYFm9yP7XIXcc9oHS5xDeudOq93mUqWnb.bmRsHGN079KF9p06JHq','0000-00-00 00:00:00',NULL,1),(1120561506,'mayra','simon','mayrahs760@gmail.com','$2y$12$3Ke4O3QGl8Rt/PFt9bdZO.mH8cZPeExxWmwpbUm.TX1K1PCB5vpqW','2005-03-14 00:00:00','66d622b6514cc.png',0),(1120571819,'andri','vargas','andri@gmail.com','$2y$12$j3v/L.YOAeeKjRuKQTiu4edPxf.BsG/5IArei68xyQCIHceckZwky','2024-09-09 21:02:19',NULL,1);
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -513,4 +513,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-07 17:48:05
+-- Dump completed on 2024-09-09 18:18:11

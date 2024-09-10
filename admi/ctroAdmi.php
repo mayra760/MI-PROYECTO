@@ -4,7 +4,7 @@ include_once('../method/usuarios_class.php');
 include_once('../method/login_class.php');
 include_once('../method/modelo.php');
 if(!isset($_SESSION))session_start();
-
+ 
 //esto es para crear un producto
 if(isset($_POST['crear'])){
     // Recibir los datos del formulario
@@ -33,12 +33,13 @@ if(isset($_POST['crear'])){
 }
 
 
-//esto es para agregar una categoria
+// esto es para agregar una categoria
 if(isset($_GET['agreCate'])){
-    $id_categoria = $_POST['id_categoria'];
+    // No necesitas obtener el id_categoria, la base de datos lo genera automáticamente
     $categoria = $_POST['categoria'];
-    Productos::agregarCate($id_categoria,$categoria);
-} 
+    Productos::agregarCate($categoria); // Solo pasas la categoría
+}
+
 
 //esto es para eliminar categoria
 if(isset($_GET['idCateEliminar'])){
@@ -83,34 +84,16 @@ if (isset($_GET['ediPro'])) {
     $detalles = $_POST['detalles'];
     $color = $_POST['color'];
     $tallas = $_POST['tallas'];
-    $imagen = '';
 
-    // Verifica si se ha subido una nueva imagen
-    if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] == UPLOAD_ERR_OK) {
-        $imagen = $_FILES['imagen']['name'];
-        $tmp_name = $_FILES['imagen']['tmp_name'];
-        $upload_dir = '../imagenes/'; // Cambia esto a tu directorio de carga
-        $upload_file = $upload_dir . basename($imagen);
-
-        // Mueve el archivo subido al directorio de destino
-        if (move_uploaded_file($tmp_name, $upload_file)) {
-            // Imagen subida correctamente
-        } else {
-            echo 'Error al subir la imagen.';
-        }
-    } else {
-        // Si no se ha subido una nueva imagen, mantiene la imagen actual
-        $imagen = Productos::datoPro(5, $id_producto);
-    }
-
-    // Actualiza el producto en la base de datos
-    if (Productos::editarProducto($id_producto, $nombre, $precio, $cantidad, $detalles,$color,$tallas, $imagen) == 1) {
+    // Actualiza el producto en la base de datos, sin modificar la imagen
+    if (Productos::editarProducto($id_producto, $nombre, $precio, $cantidad, $detalles, $color, $tallas) == 1) {
         header("Location: ctroBar.php?seccion=verPro");
         exit();
     } else {
         echo 'Error al actualizar el producto.';
     }
 }
+
 
 if(isset($_GET['eli'])){
     header("location:ctroBar.php?seccion=verConteoEli");

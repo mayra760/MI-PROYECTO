@@ -143,13 +143,12 @@ class Productos{
     }
 
     
-    public static function agregarCate($id_categoria, $categoria){
+    public static function agregarCate($categoria){
         include_once("modelo.php");
-        $consulta = Modelo::sqlAgregarCate($id_categoria, $categoria);
+        $consulta = Modelo::sqlAgregarCate($categoria); // Solo pasas la categoría
         if($consulta){
             header("location:ctroBar.php?seccion=verCate");
         }
-
     }
     public static function editarCate($des,$categoria){
         $salida = "";
@@ -186,7 +185,7 @@ class Productos{
 
     public static function datoPro($des,$idPro){
         include_once("modelo.php");
-        $salida = "";
+        $salida = ""; 
         $consulta = Modelo::sqlDatoPro($des,$idPro);
         while($fila = $consulta->fetch_array()){
             $salida .= $fila[0];
@@ -194,15 +193,16 @@ class Productos{
         return $salida; 
     }
 
-    public static function editarProducto($id_producto,$nombre,$precio,$cantidad,$detalles,$color,$tallas,$imagen){
+    public static function editarProducto($id_producto, $nombre, $precio, $cantidad, $detalles, $color, $tallas) {
         include_once("modelo.php");
         $salida = 0;
-        $consulta = Modelo::sqlEditarPro($id_producto,$nombre,$precio,$cantidad,$detalles,$color, $tallas,$imagen);
-        if($consulta){
+        $consulta = Modelo::sqlEditarPro($id_producto, $nombre, $precio, $cantidad, $detalles, $color, $tallas);
+        if ($consulta) {
             $salida = 1;
         }
         return $salida;
     }
+    
 
 
 

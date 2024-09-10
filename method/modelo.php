@@ -98,12 +98,15 @@ class Modelo{
         return $resultado = $conexion->query($sql);
     }
 
-    public static function sqlAgregarCate($id_categoria, $categoria) {
+    public static function sqlAgregarCate($categoria) {
         include("db_fashion/cb.php");
-        $sql = "INSERT INTO tb_categoria(id_categoria, categoria) "; 
-        $sql .= "VALUES ('$id_categoria', '$categoria')";
+        $sql = "INSERT INTO tb_categoria(categoria) "; 
+        $sql .= "VALUES ('$categoria')"; // Solo insertas la categoría
         return $resultado = $conexion->query($sql);    
     }
+    
+
+    
     public static function sqlVerCate() {
         include("db_fashion/cb.php");
         $sql = "SELECT * FROM tb_categoria"; // Consulta para seleccionar todas las categorías
@@ -199,23 +202,21 @@ class Modelo{
         return $resultado = $conexion->query($sql);
     }
 
-    public static function sqlEditarPro($id_producto, $nombre, $precio, $cantidad, $detalles, $color, $tallas, $imagen){
+    public static function sqlEditarPro($id_producto, $nombre, $precio, $cantidad, $detalles, $color, $tallas) {
         include("db_fashion/cb.php");
-        include_once("productos_class.php");
-        
-        // Asumiendo que el nombre correcto de la columna es 'ruta_img'
+    
         $sql = "UPDATE tb_productos 
                 SET nombre_producto = '$nombre', 
                     precio = '$precio', 
                     cantidad = '$cantidad', 
                     detalles = '$detalles', 
                     color = '$color', 
-                    tallas = '$tallas', 
-                    ruta_img = '$imagen' 
+                    tallas = '$tallas'
                 WHERE id_producto = '$id_producto'";
-                
+                    
         return $resultado = $conexion->query($sql);
     }
+    
      
 
     public static function sqlConteoEli(){

@@ -1,4 +1,4 @@
-
+<br>
 <head>
     <title>Administración - Fashion World</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
@@ -6,6 +6,12 @@
     <link href="../css/homeAdmi.css" rel="stylesheet">
 </head>
 <body>
+<div class="container">
+        <header class="header">
+            <h3>Bienvenido, Administrador</h3>
+            <p>¡Nos alegra verte de nuevo! Gestiona tu tienda con confianza y haz crecer tu negocio.</p>
+        </header>
+</div><br>
     <?php
     include_once 'panelEstadisticas.php'
     ?>

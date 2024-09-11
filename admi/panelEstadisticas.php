@@ -45,29 +45,12 @@ $data = array_values($estadisticas);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Estadísticas</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-        #myChart {
-            max-width: 600px;
-            margin: 20px auto;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/styleEstadisticas.css">
+
 </head>
 <body>
     <div class="container">
-        <h1>Estadísticas de la Base de Datos</h1>
+        <h1>Estadísticas</h1>
         <canvas id="myChart"></canvas>
     </div>
 

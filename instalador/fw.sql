@@ -29,7 +29,7 @@ CREATE TABLE `tb_carrito` (
   `precio_pro` float NOT NULL,
   `fecha_agre` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_ca`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +162,7 @@ CREATE TABLE `tb_detalle_factura` (
   KEY `id_producto` (`id_producto`),
   CONSTRAINT `tb_detalle_factura_ibfk_1` FOREIGN KEY (`id_factura`) REFERENCES `tb_facturas` (`id_factura`),
   CONSTRAINT `tb_detalle_factura_ibfk_2` FOREIGN KEY (`id_producto`) REFERENCES `tb_productos` (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,16 +183,16 @@ DROP TABLE IF EXISTS `tb_facturas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_facturas` (
   `id_factura` int NOT NULL AUTO_INCREMENT,
-  `documento_usuario` int NOT NULL,
+  `documento` int DEFAULT NULL,
   `metodo_pago` varchar(50) NOT NULL,
   `fecha_factura` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `direccion` varchar(255) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `total` float NOT NULL,
   PRIMARY KEY (`id_factura`),
-  KEY `documento_usuario` (`documento_usuario`),
-  CONSTRAINT `tb_facturas_ibfk_1` FOREIGN KEY (`documento_usuario`) REFERENCES `tb_usuarios` (`documento`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `documento_usuario` (`documento`),
+  CONSTRAINT `fk_documento` FOREIGN KEY (`documento`) REFERENCES `tb_usuarios` (`documento`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -201,6 +201,7 @@ CREATE TABLE `tb_facturas` (
 
 LOCK TABLES `tb_facturas` WRITE;
 /*!40000 ALTER TABLE `tb_facturas` DISABLE KEYS */;
+INSERT INTO `tb_facturas` VALUES (8,1120571819,'tarjeta','2024-09-10 23:48:29','san jose del guavire','31245627',129000),(10,1120571819,'tarjeta','2024-09-10 23:53:06','bicentenario 2 Guaviare','3345',67000),(11,1120571819,'tarjeta','2024-09-10 23:57:37','la paz','983489439',4000);
 /*!40000 ALTER TABLE `tb_facturas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -513,4 +514,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-09 18:18:11
+-- Dump completed on 2024-09-10 19:49:55

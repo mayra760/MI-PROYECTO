@@ -1,47 +1,18 @@
-/* styles.css */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
 }
-
 .container {
-    width: 90%;
+    width: 80%;
     margin: auto;
     overflow: hidden;
 }
-
-.header {
-    padding: 20px;
-    background: black;
-    color: #fff;
+h1 {
     text-align: center;
+    color: #333;
 }
-
-.dashboard {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-}
-
-.chart-container {
-    flex: 1;
-    min-width: 250px; /* Reduce el tamaño mínimo */
-    max-width: 400px; /* Reduce el tamaño máximo */
-    background: #fff;
-    padding: 15px; /* Ajusta el padding para que sea más compacto */
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 15px; /* Reduce el margen inferior */
-}
-
-canvas {
-    width: 100% !important;
-    height: auto !important;
+#myChart {
+    max-width: 600px;
+    margin: 20px auto;
 }

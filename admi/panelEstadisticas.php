@@ -13,6 +13,7 @@ $tablas = [
     'tb_favoritos',
     'tb_carrito',
     'tb_fecha_especial',
+    'tb_productos',
     // Agrega más tablas aquí si es necesario
 ];
 

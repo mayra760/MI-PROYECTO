@@ -1,16 +1,5 @@
--- Parámetros de conexión
--- SET @db_name = 'fw';
--- SET @db_user = 'root';
--- SET @db_password = 'root';
 
--- Crear la base de datos si no existe
-CREATE DATABASE IF NOT EXISTS fw;
-
--- Seleccionar la base de datos
-USE fw;
-
--- Tabla de productos
-CREATE TABLE IF NOT EXISTS tb_productos (
+CREATE TABLE tb_productos (
     id_producto INT NOT NULL,
     nombre_producto VARCHAR(150) NOT NULL,
     precio DECIMAL(10, 2) NOT NULL,
@@ -24,15 +13,13 @@ CREATE TABLE IF NOT EXISTS tb_productos (
     FOREIGN KEY (id_categoria) REFERENCES tb_categoria(id_categoria)
 );
 
--- Tabla de categorías
-CREATE TABLE IF NOT EXISTS tb_categoria (
+CREATE TABLE  tb_categoria (
     id_categoria INT NOT NULL,
     categoria VARCHAR(50) NOT NULL,
     PRIMARY KEY (id_categoria)
 );
 
--- Tabla de usuarios
-CREATE TABLE IF NOT EXISTS tb_usuarios (
+CREATE TABLE tb_usuarios (
     documento INT NOT NULL,
     nombre VARCHAR(30) NOT NULL,
     apellido VARCHAR(30) NOT NULL,
@@ -42,9 +29,7 @@ CREATE TABLE IF NOT EXISTS tb_usuarios (
     foto VARCHAR(2000),
     PRIMARY KEY (documento)
 );
-
--- Tabla de carrito
-CREATE TABLE IF NOT EXISTS tb_carrito (
+CREATE TABLE tb_carrito (
     id_ca INT NOT NULL AUTO_INCREMENT,
     nombre_producto VARCHAR(40) NOT NULL,
     cantidad_pro INT NOT NULL,
@@ -53,8 +38,7 @@ CREATE TABLE IF NOT EXISTS tb_carrito (
     PRIMARY KEY (id_ca)
 );
 
--- Tabla de favoritos
-CREATE TABLE IF NOT EXISTS tb_favoritos (
+CREATE TABLE  tb_favoritos (
     id_favo INT NOT NULL AUTO_INCREMENT,
     nombre_produc VARCHAR(50) NOT NULL,
     cantidad_fav INT NOT NULL,
@@ -62,8 +46,7 @@ CREATE TABLE IF NOT EXISTS tb_favoritos (
     PRIMARY KEY (id_favo)
 );
 
--- Tabla de likes
-CREATE TABLE IF NOT EXISTS tb_likes (
+CREATE TABLE  tb_likes (
     id_like INT AUTO_INCREMENT,
     producto_id INT NOT NULL,
     usuario_id INT NOT NULL,
@@ -78,8 +61,7 @@ ADD CONSTRAINT tb_likes_ibfk_1 FOREIGN KEY (producto_id)
 REFERENCES tb_productos(id_producto)
 ON DELETE CASCADE;
 
--- Tabla de fechas especiales
-CREATE TABLE IF NOT EXISTS tb_fecha_especial (
+CREATE TABLE  tb_fecha_especial (
     id INT AUTO_INCREMENT PRIMARY KEY,
     evento VARCHAR(255) NOT NULL,
     fecha_inicio DATE NOT NULL,
@@ -87,8 +69,7 @@ CREATE TABLE IF NOT EXISTS tb_fecha_especial (
     color_evento VARCHAR(255) NOT NULL
 );
 
--- Tabla de lista de deseos
-CREATE TABLE IF NOT EXISTS tb_lista_deseos (
+CREATE TABLE tb_lista_deseos (
     id_deseo INT AUTO_INCREMENT PRIMARY KEY,
     documento INT NOT NULL,
     nombre_producto VARCHAR(150) NOT NULL,
@@ -97,8 +78,7 @@ CREATE TABLE IF NOT EXISTS tb_lista_deseos (
     FOREIGN KEY (documento) REFERENCES tb_usuarios(documento)
 );
 
--- Tabla de facturas
-CREATE TABLE IF NOT EXISTS tb_facturas (
+CREATE TABLE tb_facturas (
     id_factura INT AUTO_INCREMENT PRIMARY KEY,
     documento_usuario INT NOT NULL,
     metodo_pago VARCHAR(50) NOT NULL,
@@ -109,8 +89,7 @@ CREATE TABLE IF NOT EXISTS tb_facturas (
     FOREIGN KEY (documento_usuario) REFERENCES tb_usuarios(documento)
 );
 
--- Tabla de detalles de factura
-CREATE TABLE IF NOT EXISTS tb_detalle_factura (
+CREATE TABLE tb_detalle_factura (
     id_detalle INT AUTO_INCREMENT PRIMARY KEY,
     id_factura INT NOT NULL,
     id_producto INT NOT NULL,
@@ -121,7 +100,6 @@ CREATE TABLE IF NOT EXISTS tb_detalle_factura (
     FOREIGN KEY (id_producto) REFERENCES tb_productos(id_producto)
 );
 
--- Vista de productos con likes
 CREATE OR REPLACE VIEW vista_productos_likes AS
 SELECT 
     p.id_producto,
@@ -140,8 +118,8 @@ LEFT JOIN
 GROUP BY 
     p.id_producto;
 
--- Tabla para contar registros
-CREATE TABLE IF NOT EXISTS tb_conteo_reg (
+
+CREATE TABLE  tb_conteo_reg (
     id_conteo INT NOT NULL AUTO_INCREMENT,
     descripcion VARCHAR(100) NULL,
     conteo INT NOT NULL,
@@ -149,8 +127,7 @@ CREATE TABLE IF NOT EXISTS tb_conteo_reg (
     PRIMARY KEY (id_conteo)
 );
 
--- Tabla para contar eliminaciones
-CREATE TABLE IF NOT EXISTS tb_conteo_eli (
+CREATE TABLE tb_conteo_eli (
     id_conteo INT NOT NULL AUTO_INCREMENT,
     descripcion VARCHAR(100) NULL,
     conteo INT NOT NULL,
@@ -158,8 +135,7 @@ CREATE TABLE IF NOT EXISTS tb_conteo_eli (
     PRIMARY KEY (id_conteo)
 );
 
--- Tabla para contar productos eliminados
-CREATE TABLE IF NOT EXISTS tb_conteo_productos (
+CREATE TABLE tb_conteo_productos (
     id_conteo INT NOT NULL AUTO_INCREMENT,
     descripcion VARCHAR(100) NULL,
     conteo INT NOT NULL,
@@ -167,7 +143,6 @@ CREATE TABLE IF NOT EXISTS tb_conteo_productos (
     PRIMARY KEY (id_conteo)
 );
 
--- Trigger para contar registros de usuarios
 DELIMITER //
 CREATE TRIGGER contando_registro_user
 AFTER INSERT ON tb_usuarios
@@ -179,7 +154,6 @@ END;
 //
 DELIMITER ;
 
--- Trigger para contar eliminaciones de usuarios
 DELIMITER //
 CREATE TRIGGER contando_eliminar_user
 AFTER DELETE ON tb_usuarios
@@ -191,7 +165,7 @@ END;
 //
 DELIMITER ;
 
--- Trigger para contar productos eliminados
+
 DELIMITER //
 CREATE TRIGGER contando_pro_eliminado
 AFTER DELETE ON tb_productos

@@ -7,7 +7,7 @@ function cambiarFoto() {
         formData.append('foto', archivo);
         formData.append('cambiarfoto', 'true');
 
-        $.ajax({
+        $.ajax({ 
             url: 'ctroUser.php',
             type: 'POST',
             data: formData,

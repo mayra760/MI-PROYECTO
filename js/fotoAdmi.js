@@ -2,7 +2,7 @@ function cambiarFotoAdmi() {
     var inputFoto = document.getElementById('inputFoto');
     var archivo = inputFoto.files[0];
 
-    if (archivo) {
+    if (archivo) { 
         var formData = new FormData();
         formData.append('foto', archivo);
         formData.append('cambiarfoto', 'true');

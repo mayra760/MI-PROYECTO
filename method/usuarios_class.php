@@ -36,13 +36,12 @@ class Usuarios{
     public static function perfilUsuario($id) {
         include_once("modelo.php");
         include_once("login_class.php");
-    
         $consulta = Modelo::sqlPerfil($id);
         $salida = "<div class='perfil-container'>"; 
     
         while ($fila = $consulta->fetch_assoc()) {
             // Definir la ruta de la foto o usar una predeterminada si no hay foto
-            $foto = !empty($fila['foto']) ? '../img/' . $fila['foto'] : '../img/foto.jpeg';
+            $foto = (!empty($fila['foto']) && file_exists('../img/' . $fila['foto'])) ? '../img/' . $fila['foto'] : '../img/foto.jpeg';
             $rol = Loguin::verRol($id); // Verificar el rol del usuario
             
             $salida .= "<div class='perfil-foto-container'>";

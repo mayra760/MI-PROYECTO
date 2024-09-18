@@ -19,7 +19,7 @@ class Modelo{
         }
     }
 
-    public static function sqlRegistar($documento,$nombre,$apellido,$correo,$contraseña,$fecha){
+    public static function sqlRegistar($documento,$nombre,$apellido,$correo,$contraseña){
         include("db_fashion/cb.php");
         $sql = "insert into tb_usuarios(documento,nombre,apellido,correo,contraseña,rol) ";
         $sql .= "values('$documento','$nombre','$apellido','$correo','$contraseña','1')";
@@ -27,10 +27,17 @@ class Modelo{
         return $resultado = $conexion->query($sql); 
         
     }
+    public static function sqliDuplicados($documento, $correo){
+        include 'db_fashion/cb.php';
+        $sql="SELECT COUNT(*) as total FROM tb_usuarios WHERE documento = '$documento' OR correo = '$correo'";
+        $resultado = $conexion->query($sql);
+        $row=$resultado->fetch_assoc();
+        return $row['total']; 
+    } 
+
     public static function sqlPerfil($id){
         include("db_fashion/cb.php");
         $sql = "select * from tb_usuarios where documento = '$id'";
-        // echo $sql;
         return $resultado = $conexion->query($sql); 
         
     }
@@ -38,30 +45,17 @@ class Modelo{
         include("db_fashion/cb.php");
         $sql = "select rol from tb_usuarios ";
         $sql .= "where documento = '$id'";
-        // echo $sql;
         return $resultado = $conexion->query($sql); 
         
     }
 
-    public static function sqliDuplicados($documento, $correo){
-        include 'db_fashion/cb.php';
-        $sql="SELECT COUNT(*) as total FROM tb_usuarios WHERE documento = '$documento' OR correo = '$correo'";
-        $resultado = $conexion->query($sql);
-        $row=$resultado->fetch_assoc();
-        return $row['total']; 
-        
-    } 
 
     public static function sqlAgregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $ruta_img) {
         include("db_fashion/cb.php");
-    
         // Consulta SQL para insertar el producto
         $sql = "INSERT INTO tb_productos (id_categoria, nombre_producto, precio, cantidad, detalles, color, tallas, ruta_img) 
                 VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-    
-        // Preparamos la consulta
         if($stmt = $conexion->prepare($sql)) {
-            // Asegúrate de que los tipos de datos coincidan correctamente
             // "iisdiiss" representa los tipos de datos: int, string, double, int, string, string, string, string
             $stmt->bind_param("isdissss", 
                 $id_categoria,       // Entero (id_categoria)
@@ -165,7 +159,17 @@ class Modelo{
         } else {
             return "Error al preparar la consulta para tb_likes: " . $conexion->error;
         }
-     
+    
+        // Elimina las facturas relacionadas en tb_facturas
+        $sqlFacturas = "DELETE FROM tb_facturas WHERE documento = ?";
+        if ($stmtFacturas = $conexion->prepare($sqlFacturas)) {
+            $stmtFacturas->bind_param("i", $id);
+            $stmtFacturas->execute();
+            $stmtFacturas->close();
+        } else {
+            return "Error al preparar la consulta para tb_facturas: " . $conexion->error;
+        }
+    
         // Elimina el usuario de tb_usuarios
         $sqlUsuarios = "DELETE FROM tb_usuarios WHERE documento = ?";
         if ($stmtUsuarios = $conexion->prepare($sqlUsuarios)) {
@@ -183,6 +187,7 @@ class Modelo{
             return "No se eliminaron registros o el usuario no existía.";  // Mensaje en caso de error
         }
     }
+    
     
     
     
@@ -242,12 +247,11 @@ class Modelo{
     }
     public static function sqlCambiarClaveEncrip($nuevaClave,$id){
         include("db_fashion/cb.php");
-        // Configuración para password_hash (nota: el tercer parámetro es ignorado para PASSWORD_DEFAULT)
         $cont = [
             "cost" => 12
         ];
 
-        // Encriptar la contraseña
+        // este es la encriptacion de contraseña
         $contraEncrip = password_hash($nuevaClave, PASSWORD_DEFAULT, $cont);
 
         $sql = "update tb_usuarios set contraseña = '$contraEncrip' ";
@@ -293,7 +297,7 @@ class Modelo{
     public static function buscarDatosUser($des, $id) {
         include("db_fashion/cb.php");
         $salida = "";
-        $dato = ""; // Define la variable $dato
+        $dato = ""; 
     
         if ($des == 1) $dato = "nombre";
         if ($des == 2) $dato = "apellido";
@@ -331,8 +335,7 @@ class Modelo{
     }
 
     public static function sqlVerificLike($usuario_id, $producto_id) {
-        // Incluir el archivo de conexión
-        include("db_fashion/cb.php"); // Asegúrate de que `$conexion` esté definido en `cb.php`
+        include("db_fashion/cb.php");
     
         // Consulta para verificar el like para un producto específico
         $sql = "SELECT COUNT(*) as count FROM tb_likes WHERE usuario_id = '$usuario_id' AND producto_id = '$producto_id'";
@@ -340,10 +343,8 @@ class Modelo{
     }
     
     public static function sqlAgregarLike($usuario_id, $producto_id) {
-        // Incluir el archivo de conexión
-        include("db_fashion/cb.php"); // Asegúrate de que `$conexion` esté definido en `cb.php`
+        include("db_fashion/cb.php"); 
         include_once("productos_class.php");
-    
         // Verificar si el like ya existe para ese producto
         $likeExists = Productos::verificLike($usuario_id, $producto_id);
     
@@ -354,8 +355,6 @@ class Modelo{
             // Insertar un nuevo like
             $operacion = "INSERT INTO tb_likes (producto_id, usuario_id, valor) VALUES ('$producto_id', '$usuario_id', 'like')";
         }
-    
-        // Ejecutar la operación y devolver el resultado
         return $conexion->query($operacion);
     }
   
@@ -374,10 +373,10 @@ class Modelo{
 /**mayra */
 
 public static function sqlmostrarCateg($categoria) {
-    include 'db_fashion/cb.php';
-    $sql = "SELECT * FROM tb_productos WHERE id_categoria = ?";
+    include 'db_fashion/cb.php';//conexion de la base de datos
+    $sql = "SELECT * FROM tb_productos WHERE id_categoria = ?";//se obtiene los resultados de la base de datos
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $categoria);
+    $stmt->bind_param("i", $categoria);//asumiendo que la categoria es un entero
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -394,7 +393,7 @@ public static function sqlCateNiños($categoria) {
     include 'db_fashion/cb.php';
     $sql = "SELECT * FROM tb_productos WHERE id_categoria = ?";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $categoria); // Asumiendo que la categoría es un entero
+    $stmt->bind_param("i", $categoria); // la i representa que la categoria es un entero
     $stmt->execute();
     return $stmt->get_result(); // Devuelve el resultado de la consulta
 }
@@ -404,7 +403,7 @@ public static function sqlverAcce($categoria) {
     include 'db_fashion/cb.php';
     $sql = "SELECT * FROM tb_productos WHERE id_categoria = ?";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $categoria); // Asumiendo que la categoría es un entero
+    $stmt->bind_param("i", $categoria); // asume que la categoria es un entero
     $stmt->execute();
 
     return $stmt->get_result(); // Devuelve el resultado de la consulta
@@ -415,23 +414,23 @@ public static function sqlverZapatos($categoria) {
     include 'db_fashion/cb.php';
     $sql = "SELECT * FROM tb_productos WHERE id_categoria = ?";
     $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("i", $categoria); // Asumiendo que la categoría es un entero
+    $stmt->bind_param("i", $categoria); // asume que la categoria es un entero
     $stmt->execute();
 
     return $stmt->get_result(); // Devuelve el resultado de la consulta
 }
 
     public static function sqlVerFavoritos(){
-        include 'db_fashion/cb.php';
+        include 'db_fashion/cb.php';//inlcuye la conexion de la base de datos
         $salida = "";
-        $sql = "SELECT * FROM tb_favoritos";
+        $sql = "SELECT * FROM tb_favoritos";//selecciona la tabla de la base de datos
         return $consulta = $conexion->query($sql);
     }
 
     public static function sqlverCarrito(){
-        include 'db_fashion/cb.php';
+        include 'db_fashion/cb.php';//inlcuye la conexion de la base de datos
         $salida = "";
-        $sql = "SELECT * FROM tb_carrito";
+        $sql = "SELECT * FROM tb_carrito";//selecciona la tabla de la base de datos
         return $consulta = $conexion->query($sql);
     } 
 

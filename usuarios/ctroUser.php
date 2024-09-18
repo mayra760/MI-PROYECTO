@@ -8,11 +8,20 @@ include_once("../method/encrip_class.php");
 include_once("../method/controler_login.php");
  
 
-if(isset($_GET['eliCuenta'])){
-    if(Usuarios::eliminarCuentaUser($_SESSION['id'])){
-        header("location:../index.php");
+
+if (isset($_GET['eliCuenta'])) {
+    if (Usuarios::eliminarCuentaUser($_SESSION['id'])) {
+        session_unset();    // Limpia la sesión
+        session_destroy();  // Destruye la sesión
+        // Muestra un mensaje de confirmación
+        echo "<h1>Tu cuenta ha sido eliminada correctamente.</h1>";
+        echo "<a href='../login.php'><button class ='btn btn-danger'>volver a login</button></a>";  // Enlace al login
+    } else {
+        echo "Error al eliminar la cuenta.";
     }
 }
+
+
 
 if(isset($_GET['idBuscador'])){
     echo Productos::mostrarPro($_GET['idBuscador']);
@@ -99,8 +108,8 @@ if (isset($_POST['cambiarfoto']) && $_POST['cambiarfoto'] === 'true') {
         $fileTmpPath = $_FILES['foto']['tmp_name'];
         $fileName = $_FILES['foto']['name'];
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        $newFileName = uniqid() . '.' . $fileExtension; // Genera un nombre único para evitar conflictos
-        $uploadFileDir = '../imagenes/';
+        $newFileName = uniqid() . '.' . $fileExtension; // Genera un nombre único
+        $uploadFileDir = '../img/';
         $dest_path = $uploadFileDir . $newFileName;
 
         $id_user = $_SESSION['id'];
@@ -119,8 +128,7 @@ if (isset($_POST['cambiarfoto']) && $_POST['cambiarfoto'] === 'true') {
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
             // Actualizar la base de datos con la nueva imagen
             if (Modelo::sqlActuFoto($newFileName, $id_user)) {
-                // Devuelve la ruta completa para actualizar la imagen en la interfaz
-                echo $uploadFileDir . $newFileName;  
+                echo $uploadFileDir . $newFileName; // Devuelve la ruta de la nueva imagen
             } else {
                 echo 'Error al actualizar la base de datos';
             }
@@ -130,6 +138,8 @@ if (isset($_POST['cambiarfoto']) && $_POST['cambiarfoto'] === 'true') {
     } else {
         echo 'Error en la carga del archivo';
     }
+} else {
+    echo 'Solicitud no válida';
 }
 
 

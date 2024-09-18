@@ -4,4 +4,5 @@
 echo Usuarios::perfilUsuario($_SESSION['id']);
 ?>
 </div> 
+<script src="../js/foto.js"></script>
 

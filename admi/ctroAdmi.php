@@ -4,7 +4,7 @@ include_once('../method/usuarios_class.php');
 include_once('../method/login_class.php');
 include_once('../method/modelo.php');
 if(!isset($_SESSION))session_start();
- 
+  
 //esto es para crear un producto
 if(isset($_POST['crear'])){
     // Recibir los datos del formulario
@@ -120,11 +120,17 @@ if(isset($_GET['IDbuscar'])){
     
 }
 
-if(isset($_GET['eliCuenta'])){
-    if(Usuarios::eliminarCuentaUser($_SESSION['id'])){
-        header("location:../index.php");
+if (isset($_GET['eliCuenta'])) {
+    if (Usuarios::eliminarCuentaUser($_SESSION['id'])) {
+        session_unset();    // Limpia la sesión
+        session_destroy();  // Destruye la sesión
+        echo "<h2>Tu cuenta de administrador ha sido eliminada</h2          >";
+        echo "<a href='../login.php'><button class ='btn btn-danger'>volver a login</button></a>";  // Enlace al login
+    } else {
+        echo "Error al eliminar la cuenta.";
     }
 }
+
 
 if(isset($_GET['ediUser'])) {
     if(isset($_GET['dato'])) {
@@ -144,8 +150,8 @@ if (isset($_POST['cambiarfoto']) && $_POST['cambiarfoto'] === 'true') {
         $fileTmpPath = $_FILES['foto']['tmp_name'];
         $fileName = $_FILES['foto']['name'];
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-        $newFileName = uniqid() . '.' . $fileExtension; // Genera un nombre único para evitar conflictos
-        $uploadFileDir = '../imagenes/';
+        $newFileName = uniqid() . '.' . $fileExtension; // Genera un nombre único
+        $uploadFileDir = '../img/';
         $dest_path = $uploadFileDir . $newFileName;
 
         $id_admin = $_SESSION['id'];
@@ -164,8 +170,7 @@ if (isset($_POST['cambiarfoto']) && $_POST['cambiarfoto'] === 'true') {
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
             // Actualizar la base de datos con la nueva imagen
             if (Modelo::sqlActuFoto($newFileName, $id_admin)) {
-                // Devuelve la ruta completa para actualizar la imagen en la interfaz
-                echo $uploadFileDir . $newFileName;  
+                echo $uploadFileDir . $newFileName; // Devuelve la ruta de la nueva imagen
             } else {
                 echo 'Error al actualizar la base de datos';
             }
@@ -175,6 +180,8 @@ if (isset($_POST['cambiarfoto']) && $_POST['cambiarfoto'] === 'true') {
     } else {
         echo 'Error en la carga del archivo';
     }
+} else {
+    echo 'Solicitud no válida';
 }
    
 

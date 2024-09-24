@@ -9,7 +9,7 @@
           gtag('js', new Date());
         
           gtag('config', 'G-MW395SN41J');
-        </script>
+        </script>   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -20,7 +20,9 @@
     <div class="container">
         <img src="img/foto.jpeg" alt="Imagen">
         <div class="form-container">
+            
         <h1><b>REGÍSTRATE!</b></h1>
+        <center><b>Avisooo!!! no olvidar tu contraseña</b></center><br>
         <form id="registerForm" action="method/controler_login.php?recorrido=2" method="post">
     <input type="number" name="documento" placeholder="Documento" required><br>
     <input type="text" name="nombre" placeholder="Nombre" required><br>

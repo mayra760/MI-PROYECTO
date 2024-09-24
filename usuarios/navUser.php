@@ -45,7 +45,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link text-white" href="newCate.php">
-              <i class="fas fa-star"></i> Nuevas Categorías
+              <i class="fas fa-star"></i>Nuevas Categorías
             </a>
           </li>
           <li class="nav-item">

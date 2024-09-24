@@ -1,0 +1,72 @@
+
+/* Estilo para el contenedor general */
+.terms-container {
+max-width: 800px;
+margin: 20px auto;
+padding: 20px;
+background-color: #f8f9fa;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+font-family: 'Arial', sans-serif;
+line-height: 1.6;
+}
+
+/* Título principal */
+.terms-title {
+font-size: 2rem;
+text-align: center;
+color: #343a40;
+margin-bottom: 20px;
+text-transform: uppercase;
+font-weight: 700;
+}
+
+/* Subtítulos de secciones */
+.terms-subtitle {
+font-size: 1.5rem;
+color: #495057;
+margin-top: 20px;
+text-transform: uppercase;
+font-weight: 600;
+border-left: 4px solid #17a2b8;
+padding-left: 10px;
+}
+
+/* Listas dentro de los términos */
+.terms-list {
+list-style: none;
+padding-left: 0;
+margin-top: 10px;
+}
+
+.terms-list li {
+margin-bottom: 10px;
+position: relative;
+padding-left: 25px;
+}
+
+.terms-list li::before {
+content: "\2022";
+color: #17a2b8;
+font-weight: bold;
+display: inline-block;
+width: 15px;
+margin-left: -20px;
+}
+
+/* Enlaces */
+.terms-link {
+color: #17a2b8;
+text-decoration: none;
+font-weight: 500;
+}
+
+.terms-link:hover {
+text-decoration: underline;
+}
+
+/* Párrafos */
+.terms-section p {
+margin-top: 10px;
+color: #495057;
+}

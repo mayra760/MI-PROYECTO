@@ -1,22 +1,2 @@
-$(document).ready(function() {
-    $('.btn-favoritos').on('click', function() {
-        var idProducto = $(this).data('id');
-        $.ajax({
-            url: 'agregarFavoritos.php',
-            type: 'POST',
-            data: { id: idProducto },
-            success: function(response) {
-                var data = JSON.parse(response);
-                if (data.status === 'success') {
-                    Swal.fire({
-                        icon: 'success',
-                        title: data.message,
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                }
-            }
-        });
-    });
-}); 
+$(document).ready((function(){$(".btn-favoritos").on("click",(function(){var s=$(this).data("id");$.ajax({url:"agregarFavoritos.php",type:"POST",data:{id:s},success:function(s){var t=JSON.parse(s);"success"===t.status&&Swal.fire({icon:"success",title:t.message,showConfirmButton:!1,timer:1500})}})}))}));
  

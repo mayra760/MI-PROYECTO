@@ -1,15 +1,1 @@
-function previewImage() {
-  var preview = document.getElementById('preview');
-  var file = document.getElementById('imagen').files[0];
-  var reader = new FileReader();
-
-  reader.onloadend = function () {
-      preview.src = reader.result;
-  }
-
-  if (file) {
-      reader.readAsDataURL(file);
-  } else {
-      preview.src = "../img/dedo.jpg";
-  }
-}
+function previewImage(){var e=document.getElementById("preview"),n=document.getElementById("imagen").files[0],d=new FileReader;d.onloadend=function(){e.src=d.result},n?d.readAsDataURL(n):e.src="../img/dedo.jpg"}

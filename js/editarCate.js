@@ -1,4 +1,1 @@
-function editar(){
-    let nuevo = document.getElementById['edit'].innerHTML 
-    
-}
+function editar(){document.getElementById.edit.innerHTML}

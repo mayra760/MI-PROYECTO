@@ -37,14 +37,7 @@
         hace brillar tu estilo. ¡Gracias por ser parte de nuestra familia!</p>
     </div>
             <div class="row">
-             <div class="col-lg-8">
-                    <div class="productos-container">
-                        <?php
-                        include_once '../method/productos_class.php'; 
-                        echo Productos::mostrarPro();
-                        ?>
-                    </div>
-                </div>   <br><br>        
+             <div class="col-11">      
                 <div class="col-lg-4 sidebar">
                     <div class="sidebar-widget category">
                         <h2 class="title">Categorías</h2>
@@ -61,6 +54,40 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="zapatos.php"><i class="fa fa-shoe-prints"></i>Calzado para damas caballeros y niñ@s</a>
+                                </li>
+                                <li>
+                                <?php
+                                    include '../method/modelo.php'; // Asegúrate de incluir el modelo
+
+                                    // Llama a la función para obtener la última categoría
+                                    $nueva_categoria_id = Modelo::obtenerUltimaCategoria(); // Obtiene el ID de la última categoría
+
+                                    // Verifica si se obtuvo una nueva categoría
+                                    if ($nueva_categoria_id) {
+                                        echo '<ul class="navbar-nav">'; // Abre la lista de categorías
+                                        // Ahora, obtenemos solo la nueva categoría
+                                        $resultado = Modelo::sqlVerCatePorId($nueva_categoria_id); // Llama a la función para obtener la categoría por ID
+
+                                        // Verifica si hay resultados
+                                        if ($resultado && $resultado->num_rows > 0) {
+                                            while ($fila = $resultado->fetch_assoc()) {
+                                                // Muestra solo la nueva categoría
+                                                echo '<li class="nav-item">
+                                                        <a class="nav-link" href="../method/product_cate.php?id_categoria=' . $fila['id_categoria'] . '">
+                                                            <i class="fa fa-tags"></i>' . htmlspecialchars($fila['categoria']) . '
+                                                        </a>
+                                                    </li>';
+                                            }
+                                        } else {
+                                            echo '<li class="nav-item">No hay categorías disponibles.</li>';
+                                        }
+                                        echo '</ul>'; // Cierra la lista de categorías
+                                    } else {
+                                        echo '<li class="nav-item">No hay nueva categoría disponible.</li>';
+                                    }
+                                    ?>
+
+
                                 </li>
                             </ul>
                         </nav>

@@ -1,3 +1,4 @@
+<title>editar producto</title>
 <form action="ctroAdmi.php?ediPro=ola&dato=<?php echo $_GET['dato']; ?>" class="row g-3" method="post">
 <center>
   <div class="col-auto">
@@ -8,7 +9,7 @@
   </div><br>
   <div class="col-auto">
     <input type="text" name="cantidad" class="form-control" id="cantidad" placeholder="cantidad" value="<?php if(isset($_GET['dato'])) echo Productos::datoPro(3,$_GET['dato']) ?>">
-  </div><br>
+  </div><br>  
   <div class="col-auto">
     <input type="text" name="detalles" class="form-control" id="detalles" placeholder="Detalles" value="<?php if(isset($_GET['dato'])) echo Productos::datoPro(4,$_GET['dato']) ?>">
   </div><br>

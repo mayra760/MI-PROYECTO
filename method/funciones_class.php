@@ -24,7 +24,7 @@ class HtmlGenerator {
                     </div>
                     <div class='code'>
                         <p>Ingresa esta nueva contraseña: $dato</p>
-                        <a href='localhost/fashionWorld/cambioClave.php?codigo=".$id."'>dale click</a>
+                        <a href='localhost/MI-PROYECTO-main/cambioClave.php?codigo=".$id."'>dale click</a>
                     </div>
                 </div>
             </body>

@@ -81,7 +81,7 @@ if (isset($_GET['recorrido'])) {
         if (Loguin::registraUsuarios($documento, $nombre, $apellido, $correo, $contraseña, $fecha) == 2) {
             $_SESSION['id'] = $documento;
             header("location:../usuarios/conBaBus.php");
-            exit(); // Asegúrate de llamar a exit() después de redirigir
+            exit();
         } else {
             header("location:../registrar.php?error=1"); // Ajusta la ruta según corresponda
         }

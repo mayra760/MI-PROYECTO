@@ -54,16 +54,16 @@ class Loguin{
         return $salida;
     }
 
-    public static function verRol($id){
-        include_once("modelo.php");
-        $salida = 0;
-        $consulta = Modelo::sqlRol($id);
-        while($fila = $consulta->fetch_array()){
-            $salida = $fila[0];
+    public static function verRol($id) {
+        include_once("modelo.php");  // Incluir el archivo del modelo, que contiene la lógica de acceso a datos.
+        $salida = 0;  // Inicializa la variable $salida para almacenar el rol del usuario.
+        $consulta = Modelo::sqlRol($id);  // Llama a la función sqlRol del modelo, pasando el ID, para obtener el rol correspondiente.
+        // Itera sobre los resultados de la consulta.
+        while ($fila = $consulta->fetch_array()) {  
+            $salida = $fila[0];  // Asigna el primer valor de la fila (que se espera que sea el rol) a $salida.
         }
-        return $salida;
+        return $salida;  // Devuelve el rol del usuario (o 0 si no se encontró).
     }
-
     public static function verDuplicados($documento,$correo){
         include_once("modelo.php");
         return Modelo::sqliDuplicados($documento, $correo) > 0;

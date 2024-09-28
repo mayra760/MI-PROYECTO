@@ -21,19 +21,29 @@ class Modelo{
             return false;
         }
     }
-
+ 
     // Función para registrar un nuevo usuario
     public static function sqlRegistar($documento, $nombre, $apellido, $correo, $contraseña) {
         // Conectar a la base de datos
         include("db_fashion/cb.php");
 
-        // Inserta un nuevo usuario con los datos que recibe
-        $sql = "INSERT INTO tb_usuarios(documento, nombre, apellido, correo, contraseña, rol) ";
-        $sql .= "VALUES('$documento', '$nombre', '$apellido', '$correo', '$contraseña', '1')";
+        // Verificar si el documento ya existe en la base de datos
+        $check_sql = "SELECT * FROM tb_usuarios WHERE documento = '$documento'";
+        $result = $conexion->query($check_sql);
 
-        // Ejecuta la consulta y devuelve el resultado
-        return $resultado = $conexion->query($sql); 
+        if ($result->num_rows > 0) {
+            // Si el documento ya existe, devuelve un valor que indique duplicado
+            return false; // Indica que el usuario ya existe
+        } else {
+            // Inserta un nuevo usuario con los datos que recibe
+            $sql = "INSERT INTO tb_usuarios(documento, nombre, apellido, correo, contraseña, rol) ";
+            $sql .= "VALUES('$documento', '$nombre', '$apellido', '$correo', '$contraseña', '1')";
+
+            // Ejecuta la consulta y devuelve el resultado
+            return $conexion->query($sql);
+        }
     }
+
 
     // Función para verificar si el documento o el correo ya están registrados
     public static function sqliDuplicados($documento, $correo) {

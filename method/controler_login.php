@@ -72,18 +72,25 @@ if (isset($_GET['recorrido'])) {
     }
 
     if ($recorrido == 2) {
+        $documento = isset($_POST['documento']) ? $_POST['documento'] : '';
         $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : '';
         $apellido = isset($_POST['apellido']) ? $_POST['apellido'] : '';
         $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
         $fecha = isset($_POST['fecha']) ? $_POST['fecha'] : '';
         $contraseña = isset($_POST['contraseña']) ? $_POST['contraseña'] : '';
-
-        if (Loguin::registraUsuarios($documento, $nombre, $apellido, $correo, $contraseña, $fecha) == 2) {
+    
+        // Llama a la función para registrar el usuario
+        $registro_exitoso = Loguin::registraUsuarios($documento, $nombre, $apellido, $correo, $contraseña, $fecha);
+    
+        if ($registro_exitoso == false) {
+            // Si ya existe, redirige con un mensaje de error
+            header("location:../registrar.php?error=usuario_existente");
+            exit();
+        } else {
             $_SESSION['id'] = $documento;
             header("location:../usuarios/conBaBus.php");
             exit();
-        } else {
-            header("location:../registrar.php?error=1"); // Ajusta la ruta según corresponda
         }
     }
+    
 }    

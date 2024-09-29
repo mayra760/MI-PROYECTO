@@ -28,59 +28,61 @@
   </head>
   <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(250, 87, 22);">
-    <div class="container-fluid">
-      <a class="navbar-brand text-white" href="conBaBus.php?seccion=home">
-        <h2><b>FASHION WORLD</b></h2>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link text-white" href="fecha_especial.php">
-              <i class="fas fa-calendar-alt"></i> Fechas Especiales
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="newCate.php">
-              <i class="fas fa-star"></i>Nuevas Categorías
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="../manuales/Manual de usuario FW.pdf" download="ManualUsuario.pdf">
-              <i class="fas fa-file-alt"></i> Manual de Usuario
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="conBaBus.php?seccion=cerrarSe">
-              <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user-circle"></i> Menú
-            </a>
-            <ul class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="../product/favoritos.php">
-                  <i class="fas fa-heart"></i> Tus favoritos
-                </a></li>
-                <li><a class="dropdown-item" href="../product/carrito.php">
-                  <i class="fas fa-shopping-cart"></i> Carrito
-                </a></li>
-                <li><a class="dropdown-item" href="../product/vista.php">
-                  <i class="fas fa-th-large"></i> Categorías
-                </a></li>
-                <li><a class="dropdown-item" href="conBaBus.php?seccion=perfil">
-                  <i class="fas fa-user"></i> Mi perfil
-                </a></li>
-              </ul>
-          </li>
-        </ul>
-      </div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:rgb(250, 87, 22);">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" href="conBaBus.php?seccion=home">
+      <h2><b>FASHION WORLD</b></h2>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="fecha_especial.php">
+            <i class="fas fa-calendar-alt"></i> Fechas Especiales
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="newCate.php">
+            <i class="fas fa-star"></i>Nuevas Categorías
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="../manuales/Manual de usuario FW.pdf" download="ManualUsuario.pdf">
+            <i class="fas fa-file-alt"></i> Manual de Usuario
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="conBaBus.php?seccion=cerrarSe">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+          </a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-user-circle"></i> Menú
+          </a>
+          <ul class="dropdown-menu custom-dropdown" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="../product/favoritos.php">
+              <i class="fas fa-heart"></i> Tus favoritos
+            </a></li>
+            <li><a class="dropdown-item" href="../product/carrito.php">
+              <i class="fas fa-shopping-cart"></i> Carrito
+            </a></li>
+            <li><a class="dropdown-item" href="../product/vista.php">
+              <i class="fas fa-th-large"></i> Categorías
+            </a></li>
+            <li><a class="dropdown-item" href="conBaBus.php?seccion=perfil">
+              <i class="fas fa-user"></i> Mi perfil
+            </a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
+
 
   <!-- Main content -->
   <div class="container">

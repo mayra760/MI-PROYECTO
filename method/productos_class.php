@@ -10,7 +10,7 @@ class Productos{
     
         // Llamar a la función del modelo para obtener los productos con sus likes
         $consulta = Modelo::sqlMostrarPro($buscar); // Llamamos a la función sqlMostrarPro del modelo, pasando la búsqueda
-    
+     
         if ($consulta->num_rows > 0) { // Si hay productos en la consulta
             while ($fila = $consulta->fetch_assoc()) { // Iteramos a través de cada producto en la consulta
                 $salida .= '<div class="producto">'; // Agregamos un contenedor para cada producto
@@ -24,7 +24,6 @@ class Productos{
                 $salida .= "<p class='producto-precio'>Precio: $" . number_format($fila['precio'], 3) . "</p>"; // Precio formateado
                 $salida .= "<p class='producto-cantidad'>Cantidad: " . $fila['cantidad'] . "</p>"; // Cantidad disponible
                 $salida .= "<p class='producto-detalles'>" . $fila['detalles'] . "</p>"; // Detalles del producto
-    
                 if (!empty($fila['ruta_img'])) { // Si la ruta de la imagen no está vacía
                     // Asegúrate de que la ruta sea correcta
                     $rutaImagen = "../img/" . $fila['ruta_img']; // Construimos la ruta de la imagen
@@ -40,12 +39,14 @@ class Productos{
     
                 // Mostrar el número de "likes"
                 $salida .= "<p class='producto-likes'>Likes: " . $fila['total_likes'] . "</p>"; // Mostramos la cantidad de likes del producto
-    
                 // Verificar si el usuario actual ya dio like
                 $salida .= "<div class='producto-acciones'>"; // Contenedor para las acciones del producto
                 if (Loguin::verRol($_SESSION['id']) == 0) { // Si el usuario no tiene un rol especial
                     $salida .= "<a href='ctroBar.php?dato=" . $fila['id_producto'] . "&seccion=editarPro' class='btn btn-editar'>Editar</a>"; // Agregamos un botón para editar el producto
                 }
+                $salida .= "<div class='botones-container'>";
+                $salida .= "<button class='btn btn-danger btn-agregar-carrito' data-id='" . htmlspecialchars($fila["id_producto"]) . "'><i class='fa fa-shopping-cart'></i> Comprar ahora</button>";
+                $salida .= "</div>";
                 // Verificamos si el usuario ya dio like y establecemos la clase correspondiente
                 $likeClass = self::verificLike($_SESSION['id'], $fila['id_producto']) ? 'fas fa-heart liked' : 'far fa-heart'; // Asignamos la clase del icono de like
                 $salida .= "<i class='$likeClass' data-id_producto='" . $fila['id_producto'] . "' onclick='likear(this)'></i>"; // Agregamos el icono de like

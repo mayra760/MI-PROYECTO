@@ -34,13 +34,12 @@
                 <label for="metodo_pago">Seleccione el método de pago:</label>
                 <select name="metodo_pago" id="metodo_pago" class="form-control">
                     <option value="tarjeta">Tarjeta de Crédito/Débito</option>
-                    <option value="paypal">PayPal</option>
+                    <option value="paypal">Efectivo</option>
                 </select>
             </div>
 
             <!-- Imágenes de métodos de pago -->
             <div class="payment-methods">
-                <img src="../img/paypal.png" alt="PayPal">
                 <img src="../img/visa.png" alt="Visa">
                 <img src="../img/masterCard.png" alt="MasterCard">
             </div>

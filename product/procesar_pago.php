@@ -1,4 +1,12 @@
-<title>factura</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    <link rel="stylesheet" href="../css/factura.css"> <!-- Asegúrate de enlazar el CSS -->
+</head>
+<body>
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verificar que los datos han sido enviados desde el formulario
@@ -23,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $consulta = Modelo::sqlverCarrito();
 
     // Conectar a la base de datos para insertar la factura
-    include '../method/db_fashion/cb.php'; // Conexión a la base de datos
+    include '../method/db_fashion/cb.php';
 
     // Preparar la declaración SQL para insertar los datos en la tabla tb_facturas
     $sql_insert = $conexion->prepare("INSERT INTO tb_facturas (documento, metodo_pago, direccion, telefono, total) VALUES (?, ?, ?, ?, ?)");
@@ -94,3 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: pago.php");
 }
 ?>
+
+</body>
+</html>

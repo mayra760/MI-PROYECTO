@@ -24,17 +24,18 @@ class Productos{
                 $salida .= "<p class='producto-precio'>Precio: $" . number_format($fila['precio'], 3) . "</p>"; // Precio formateado
                 $salida .= "<p class='producto-cantidad'>Cantidad: " . $fila['cantidad'] . "</p>"; // Cantidad disponible
                 $salida .= "<p class='producto-detalles'>" . $fila['detalles'] . "</p>"; // Detalles del producto
-                if (!empty($fila['ruta_img'])) { // Si la ruta de la imagen no está vacía
-                    // Asegúrate de que la ruta sea correcta
-                    $rutaImagen = "../img/" . $fila['ruta_img']; // Construimos la ruta de la imagen
-                    // Verifica que el archivo existe antes de mostrar la imagen
-                    if (file_exists($rutaImagen)) { // Si la imagen existe
-                        $salida .= '<div class="imagen-container"><img src="' . $rutaImagen . '" alt="' . $fila['nombre_producto'] . '" class="producto-imagen"></div>'; // Mostramos la imagen
-                    } else { // Si la imagen no existe
-                        $salida .= "<p class='sin-imagen'>Imagen no disponible</p>"; // Mostramos un mensaje de que no hay imagen
+                if (!empty($fila['ruta_img'])) {
+                    $rutasImagenes = explode(',', $fila['ruta_img']); // Separar las rutas
+                    foreach ($rutasImagenes as $rutaImagen) {
+                        $rutaImagenCompleta = "../img/" . trim($rutaImagen); // Asegúrate de que no haya espacios
+                        if (file_exists($rutaImagenCompleta)) {
+                            $salida .= '<div class="imagen-container"><img src="' . $rutaImagenCompleta . '" alt="' . $fila['nombre_producto'] . '" class="producto-imagen"></div>';
+                        } else {
+                            $salida .= "<p class='sin-imagen'>Imagen no disponible</p>";
+                        }
                     }
-                } else { // Si no hay ruta de imagen
-                    $salida .= "<p class='sin-imagen'>Imagen no disponible</p>"; // Mostramos un mensaje de que no hay imagen
+                } else {
+                    $salida .= "<p class='sin-imagen'>Imagen no disponible</p>";
                 }
     
                 // Mostrar el número de "likes"
@@ -129,7 +130,7 @@ public static function eliminarCate($id){ // Definimos una función para elimina
     return $salida; // Devolvemos el valor de salida (1 o 0)
 }
 
-
+ 
  
 public static function agregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $imagen){ 
     // Definimos una función para agregar un producto, recibiendo varios parámetros como ID de categoría, nombre, precio, cantidad, descripción, color, tallas e imagen

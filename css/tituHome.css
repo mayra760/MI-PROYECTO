@@ -1,0 +1,20 @@
+.titulo-productos {
+    font-size: 1.3em; /* Tamaño de fuente moderado */
+    color: #444; /* Color de texto ligeramente más claro */
+    text-align: center; /* Centrar el texto */
+    margin: 20px 0; /* Espaciado vertical */
+    font-family: 'Verdana', sans-serif; /* Tipografía diferente */
+    font-weight: bold; /* Negrita para mayor énfasis */
+    text-transform: uppercase; /* Convertir a mayúsculas */
+    letter-spacing: 1px; /* Espaciado entre letras */
+}
+
+.titulo-productos::after {
+    content: ''; /* Crear un pseudo-elemento */
+    display: block; /* Hacerlo un bloque */
+    width: 60%; /* Ancho del subrayado */
+    height: 2px; /* Altura del subrayado */
+    background: #f06102; /* Color del subrayado (verde) */
+    margin: 10px auto; /* Centrar el subrayado */
+    border-radius: 3px; /* Bordes redondeados */
+}

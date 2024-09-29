@@ -4,9 +4,9 @@ include_once('../method/usuarios_class.php');
 include_once('../method/login_class.php');
 include_once('../method/modelo.php');
 if(!isset($_SESSION))session_start();
-  
-//esto es para crear un producto
-if(isset($_POST['crear'])){
+   
+// Esto es para crear un producto
+if (isset($_POST['crear'])) {
     // Recibir los datos del formulario
     $id_categoria = $_POST['id_categoria'];
     $nombre = $_POST['nombre'];
@@ -15,22 +15,31 @@ if(isset($_POST['crear'])){
     $descripcion = $_POST['descripcion'];
     $color = $_POST['color'];
     $tallas = $_POST['tallas'];
-    $imagen = $_FILES['imagen'];
+    $imagenes = $_FILES['imagenes']; // Cambia 'imagen' a 'imagenes'
 
     // Definir el directorio de destino
-    $target_dir = "../img/"; // Ajusta esta ruta según donde desees guardar la imagen
-    $target_file = $target_dir . basename($imagen["name"]);
-    
-    // Verificar si la imagen se subió correctamente
-    if (move_uploaded_file($imagen["tmp_name"], $target_file)) {
-        // Llama a la función para agregar el producto, pasando el nombre de la imagen
-        if(Productos::agregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, $target_file) == 1){
-            header("location:ctroBar.php?seccion=verPro");
+    $target_dir = "../img/"; // Ajusta esta ruta según donde desees guardar las imágenes
+    $imagenes_rutas = []; // Array para almacenar las rutas de las imágenes
+
+    // Verificar y mover las imágenes
+    foreach ($imagenes['tmp_name'] as $key => $tmp_name) {
+        $file_name = basename($imagenes['name'][$key]);
+        $target_file = $target_dir . $file_name;
+
+        // Verificar si la imagen se subió correctamente
+        if (move_uploaded_file($tmp_name, $target_file)) {
+            $imagenes_rutas[] = $target_file; // Agregar la ruta al array
+        } else {
+            echo "Lo siento, hubo un error al subir la imagen: $file_name<br>";
         }
-    } else {
-        echo "Lo siento, hubo un error al subir la imagen.";
+    }
+
+    // Llama a la función para agregar el producto, pasando las rutas de las imágenes
+    if (Productos::agregarPro($id_categoria, $nombre, $precio, $cantidad, $descripcion, $color, $tallas, implode(',', $imagenes_rutas)) == 1) {
+        header("location:ctroBar.php?seccion=verPro");
     }
 }
+
 
 
 // esto es para agregar una categoria

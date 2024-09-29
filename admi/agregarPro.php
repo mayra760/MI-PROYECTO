@@ -46,7 +46,7 @@
     <div class="form-group">
       <label for="cantidad">Cantidad:</label>
       <input type="number" id="cantidad" name="cantidad">
-    </div>
+    </div> 
  
     <div class="form-group">
       <label for="descripcion">Descripción:</label>
@@ -64,9 +64,10 @@
     </div>
 
     <div class="form-group">
-      <label for="imagen">Subir Imagen:</label>
-      <input type="file" id="imagen" name="imagen" accept="image/*" onchange="previewImage()">
+      <label for="imagenes">Subir Imágenes:</label>
+      <input type="file" id="imagenes" name="imagenes[]" accept="image/*" multiple onchange="previewImages(this)">
     </div>
+
 
     <div class="submit-button">
       <input type="submit" name="crear" value="Agregar Producto">

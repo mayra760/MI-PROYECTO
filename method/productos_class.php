@@ -502,14 +502,14 @@ public static function verFavoritos() {
         // Crea una fila en la tabla para cada producto favorito.
         $salida .= "
             <tr>
-                <td data-label='Producto' class='product-name'>{$fila['nombre_produc']}</td>  // Muestra el nombre del producto.
+                <td data-label='Producto' class='product-name'>{$fila['nombre_produc']}</td>
                 <td data-label='Cantidad'>
                     <div class='quantity-buttons'>
-                        <input type='text' value='{$fila['cantidad_fav']}' class='quantity-input' readonly>  // Muestra la cantidad de este producto en favoritos, como un campo de texto solo lectura.
+                        <input type='text' value='{$fila['cantidad_fav']}' class='quantity-input' readonly> 
                     </div>
                 </td>
                 <td data-label='Eliminar'>
-                    <a href='eliminarFavo.php?id={$fila['id_favo']}' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a>  // Botón para eliminar el producto de favoritos, redirige a 'eliminarFavo.php' pasando el ID del favorito.
+                    <a href='eliminarFavo.php?id={$fila['id_favo']}' class='btn btn-danger'><i class='fas fa-trash-alt'></i></a>
                 </td>
             </tr>";
     }

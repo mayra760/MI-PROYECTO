@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `fw` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `fw`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: fw
@@ -325,7 +323,7 @@ CREATE TABLE `tb_usuarios` (
   `nombre` varchar(100) DEFAULT NULL,
   `apellido` varchar(100) DEFAULT NULL,
   `correo` varchar(100) DEFAULT NULL,
-  `contrasena` varchar(255) DEFAULT NULL,
+  `contraseña` varchar(100) DEFAULT NULL,
   `fecha` date DEFAULT NULL,
   `foto` varchar(255) DEFAULT NULL,
   `rol` varchar(50) DEFAULT NULL,
@@ -364,6 +362,14 @@ SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Dumping events for database 'fw'
+--
+
+--
+-- Dumping routines for database 'fw'
+--
+
+--
 -- Final view structure for view `vista_productos_likes`
 --
 
@@ -390,4 +396,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-30 13:43:32
+-- Dump completed on 2024-09-30 14:03:22

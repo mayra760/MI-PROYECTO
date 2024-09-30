@@ -307,7 +307,6 @@ CREATE TABLE `tb_productos` (
 
 LOCK TABLES `tb_productos` WRITE;
 /*!40000 ALTER TABLE `tb_productos` DISABLE KEYS */;
-INSERT INTO `tb_productos` VALUES (4,'conjunto de bebe',40000,3,'este es un conjunto para bebe','vinotinto','talla 2','infantil3.png',3),(19,'camisa',34000,2,'esta es una camisa','negro','talla M','../img/camisa.png',1),(20,'cojunto de piezas para hombre',59000,3,'contiene estampado grafico, cuello redondo, manga corta','negro','talla M','../img/hombre3.png',1),(22,'conjunto para  mujer',89000,3,'conjunto de verano para mujer, muy comodo y de una muy buena calidad','blanco','talla s','../img/mujer.png',1),(23,'zapatos ',67000,3,'zapatos para niño para correr de un buen material','azul','talla 30','../img/zapato.png',4),(24,'puños para orejas',4000,5,'set de 5 piezas de puños para orejas de estilo Boho y Hip Hop para Mujer - No Requiere Perforación, Pendientes de Clip de Hierro para Uso Diario y Fiestas','dorado','unica','../img/accesorio1.png',5);
 /*!40000 ALTER TABLE `tb_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +323,7 @@ CREATE TABLE `tb_usuarios` (
   `apellido` varchar(100) DEFAULT NULL,
   `correo` varchar(100) DEFAULT NULL,
   `contraseña` varchar(100) DEFAULT NULL,
-  `fecha` date DEFAULT NULL,
+  `fecha` datetime DEFAULT CURRENT_TIMESTAMP,
   `foto` varchar(255) DEFAULT NULL,
   `rol` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`documento`),
@@ -396,4 +395,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-30 14:03:22
+-- Dump completed on 2024-09-30 14:19:03

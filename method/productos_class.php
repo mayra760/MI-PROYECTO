@@ -1,6 +1,6 @@
 <?php
 class Productos{
-
+ 
     public static function mostrarPro($buscar = null) { // Definimos una función para mostrar productos, opcionalmente filtrando por una búsqueda
         include_once("controler_login.php"); // Incluimos el archivo para manejar el inicio de sesión
         include_once("modelo.php"); // Incluimos el archivo del modelo que contiene funciones para acceder a la base de datos

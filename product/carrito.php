@@ -1,8 +1,6 @@
 <?php
 
 session_start(); // Iniciar la sesión
-
-include 'plantill2.php';
 ?>
 <head>
 
@@ -11,10 +9,11 @@ include 'plantill2.php';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <link href="../css/carrito.css" rel="stylesheet">
-    <link href="../css/stylePro.css" rel="stylesheet">
+        <link href="../css/estilo.css" rel="stylesheet">
 
 </head>
 <body> 
+<center><a href="../usuarios/conBaBus.php?seccion=home" class="btn btn-home"><i class="fas fa-home">volver</i></a></center>
     <div class="container cart-container">
         <h2 class="cart-title"><i class='fa fa-shopping-cart'></i> Tu carrito</h2>
         <?php

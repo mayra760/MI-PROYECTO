@@ -29,7 +29,7 @@ CREATE TABLE `tb_carrito` (
   `precio_pro` float NOT NULL,
   `fecha_agre` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_ca`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +38,7 @@ CREATE TABLE `tb_carrito` (
 
 LOCK TABLES `tb_carrito` WRITE;
 /*!40000 ALTER TABLE `tb_carrito` DISABLE KEYS */;
+INSERT INTO `tb_carrito` VALUES (21,'ropa para caballeros',1,67000,'2024-09-30 19:51:22'),(22,'zapatillas ',1,89000,'2024-09-30 20:03:53');
 /*!40000 ALTER TABLE `tb_carrito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -61,7 +62,7 @@ CREATE TABLE `tb_categoria` (
 
 LOCK TABLES `tb_categoria` WRITE;
 /*!40000 ALTER TABLE `tb_categoria` DISABLE KEYS */;
-INSERT INTO `tb_categoria` VALUES (1,'Ropa para Damas y caballeros'),(3,'ropa infantil'),(4,'calzado para todos'),(5,'accesorios'),(6,'sabanas');
+INSERT INTO `tb_categoria` VALUES (1,'Ropa para Damas y caballeros'),(3,'ropa infantil'),(4,'calzado para todos'),(5,'accesorios');
 /*!40000 ALTER TABLE `tb_categoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -151,7 +152,7 @@ DROP TABLE IF EXISTS `tb_facturas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `tb_facturas` (
-  `id_factura` int NOT NULL,
+  `id_factura` int NOT NULL AUTO_INCREMENT,
   `documento` int DEFAULT NULL,
   `metodo_pago` varchar(50) DEFAULT NULL,
   `fecha_factura` date DEFAULT NULL,
@@ -186,7 +187,7 @@ CREATE TABLE `tb_favoritos` (
   `cantidad_fav` int NOT NULL,
   `fecga_agreg` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_favo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +196,7 @@ CREATE TABLE `tb_favoritos` (
 
 LOCK TABLES `tb_favoritos` WRITE;
 /*!40000 ALTER TABLE `tb_favoritos` DISABLE KEYS */;
-INSERT INTO `tb_favoritos` VALUES (4,'aretes',1,'2024-08-27 02:18:12');
+INSERT INTO `tb_favoritos` VALUES (5,'cadena',1,'2024-09-30 23:32:59');
 /*!40000 ALTER TABLE `tb_favoritos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,7 +214,7 @@ CREATE TABLE `tb_fecha_especial` (
   `fecha_fin` date NOT NULL,
   `color_evento` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -222,7 +223,7 @@ CREATE TABLE `tb_fecha_especial` (
 
 LOCK TABLES `tb_fecha_especial` WRITE;
 /*!40000 ALTER TABLE `tb_fecha_especial` DISABLE KEYS */;
-INSERT INTO `tb_fecha_especial` VALUES (5,'dia de la madre','2024-09-14','2024-09-06','naranja');
+INSERT INTO `tb_fecha_especial` VALUES (5,'dia de la madre','2024-09-14','2024-09-06','naranja'),(6,'festival yurupary de oro','2024-09-30','2024-10-01','amarillo');
 /*!40000 ALTER TABLE `tb_fecha_especial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,7 +299,7 @@ CREATE TABLE `tb_productos` (
   PRIMARY KEY (`id_producto`),
   KEY `fk_categoria` (`id_categoria`),
   CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categoria` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -307,6 +308,7 @@ CREATE TABLE `tb_productos` (
 
 LOCK TABLES `tb_productos` WRITE;
 /*!40000 ALTER TABLE `tb_productos` DISABLE KEYS */;
+INSERT INTO `tb_productos` VALUES (25,'cadena',45000,2,'esta es una cadena','plata','unica','../img/accesosio2.png',5),(26,'ropa para caballeros',67000,3,'esto es ropa para caballeros','rojo','talla m','../img/hombre3.png,../img/hombre2.png,../img/hombre1.png',1),(27,'zapatillas ',89000,1,'estas son unas zapatillas','blanco','talla 38','../img/zapatillas.png',4);
 /*!40000 ALTER TABLE `tb_productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -337,6 +339,7 @@ CREATE TABLE `tb_usuarios` (
 
 LOCK TABLES `tb_usuarios` WRITE;
 /*!40000 ALTER TABLE `tb_usuarios` DISABLE KEYS */;
+INSERT INTO `tb_usuarios` VALUES (12345,'maria','perez','maria@gmail.com','$2y$12$dsOJ6AfWm/oB41LfzXQi7OIxuoplqto90ZJVHDI8lNOMS.hGIqUvi','2024-09-30 14:47:13',NULL,'1'),(1120561506,'mayra','simon','mayrahs760@gmail.com','$2y$12$XZ0AoWsz6TX/oqEE8d7Uve0BMvXF71YRcQRjwVibdWXnDUxlGh3f2','2024-09-30 14:22:45','66fafa9ab8236.png','0');
 /*!40000 ALTER TABLE `tb_usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,14 +362,6 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `ruta_img`,
  1 AS `total_likes`*/;
 SET character_set_client = @saved_cs_client;
-
---
--- Dumping events for database 'fw'
---
-
---
--- Dumping routines for database 'fw'
---
 
 --
 -- Final view structure for view `vista_productos_likes`
@@ -395,4 +390,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-09-30 14:19:03
+-- Dump completed on 2024-09-30 18:42:35

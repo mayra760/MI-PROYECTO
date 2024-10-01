@@ -1,8 +1,6 @@
 <?php
 
 session_start(); // Iniciar la sesión
-
-include 'plantill2.php';
 ?>
 <head>
     <title>Favoritos</title>
@@ -16,6 +14,7 @@ include 'plantill2.php';
     <link href="../css/favorito2.css" rel="stylesheet">
 </head>
 <body>
+<center><a href="../usuarios/conBaBus.php?seccion=home" class="btn btn-home"><i class="fas fa-home"></i>volver</a></center>
     <div class="container favorites-container">
         <h2 class="favorites-title"><i class='fas fa-heart'></i> Tus favoritos</h2>
         <?php

@@ -14,22 +14,20 @@
 
     <div class="category-container">
         <?php
-        include '../method/db_fashion/cb.php';
+        include '../method/db_fashion/cb.php';//incluya la conexion de la base de datos
         include_once '../method/modelo.php';
-
-        // Llama a la función y guarda el resultado
         $resultado = Modelo::sqlVerCate();
-
-        // Verifica si se obtuvieron resultados
         if ($resultado->num_rows > 0) {
             // Itera sobre los resultados
             while ($fila = $resultado->fetch_assoc()) {
+                $id_categoria = $fila['id_categoria']; // este es el id de la categoria
                 echo '<div class="category-card">';
                 echo '<div class="category-title">' . htmlspecialchars($fila['categoria']) . '</div>';
+                echo '<a href="../method/product_cate.php?id_categoria=' . $id_categoria . '" class="btn btn-view-products">Ver Productos</a>'; // Enlace a la categoría
                 echo '</div>';
             }
         } else {
-            echo "No hay categorías disponibles.";
+            echo "No hay categorías disponibles.";//si no hay productos te aparecera esto
         }
         ?>
     </div>

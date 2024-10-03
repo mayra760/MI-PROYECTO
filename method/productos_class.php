@@ -17,12 +17,12 @@ class Productos{
     
                 if (Loguin::verRol($_SESSION['id']) == 0) { // Si el usuario no tiene un rol especial
                     $salida .= "<span class='producto-id'>ID: " . $fila['id_producto'] . "</span>"; // Mostramos el ID del producto
+                    $salida .= "<p class='producto-cantidad'>Cantidad: " . $fila['cantidad'] . "</p>"; // Cantidad disponible
                 }
     
                 // Agregamos el nombre, precio, cantidad y detalles del producto
                 $salida .= "<h3 class='producto-nombre'>" . $fila['nombre_producto'] . "</h3>"; // Nombre del producto
                 $salida .= "<p class='producto-precio'>Precio: $" . number_format($fila['precio'], 3) . "</p>"; // Precio formateado
-                $salida .= "<p class='producto-cantidad'>Cantidad: " . $fila['cantidad'] . "</p>"; // Cantidad disponible
                 $salida .= "<p class='producto-detalles'>" . $fila['detalles'] . "</p>"; // Detalles del producto
                 if (!empty($fila['ruta_img'])) {
                     $rutasImagenes = explode(',', $fila['ruta_img']); // Separar las rutas

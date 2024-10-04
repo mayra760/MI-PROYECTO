@@ -138,9 +138,5 @@ if (isset($_POST['cambiarfoto']) && $_POST['cambiarfoto'] === 'true') {
     } else {
         echo 'Error en la carga del archivo';
     }
-} else {
-    echo 'Solicitud no válida';
 }
-
-
 ?>

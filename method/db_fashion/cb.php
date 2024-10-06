@@ -5,6 +5,12 @@ $user = "root";
 $pass = "root";
 $db = "fw";
 
+// esta parte es para que se pueda usar en cualquier servidor
+//$server = $_GET['servidor'] ?? 'localhost';
+//$user = $_GET['root'] ?? 'root';
+//$pass = $_GET['clave'] ?? '';
+//$db = $_GET['nombre_bd'] ?? 'fw';
+
 // Conectar al servidor MySQL
 $conexion = new mysqli($server, $user, $pass);
 if ($conexion->connect_error) {

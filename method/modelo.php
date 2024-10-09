@@ -103,15 +103,29 @@ class Modelo{
     // Función para mostrar productos, con opción de buscar por nombre
     public static function sqlMostrarPro($buscar = null) {
         include("db_fashion/cb.php");
-
-        // Selecciona todos los productos, pero si se da un valor para buscar, filtra por nombre
-        $sql = "SELECT * FROM vista_productos_likes ";
+    
+        // Utiliza la consulta SQL que une las tablas tb_productos y tb_likes
+        $sql = "SELECT p.id_producto AS id_producto, 
+                       p.nombre_producto AS nombre_producto, 
+                       p.precio AS precio, 
+                       p.cantidad AS cantidad, 
+                       p.detalles AS detalles, 
+                       p.color AS color, 
+                       p.tallas AS tallas, 
+                       p.ruta_img AS ruta_img, 
+                       COUNT(l.id_like) AS total_likes 
+                FROM tb_productos p 
+                LEFT JOIN tb_likes l ON p.id_producto = l.producto_id 
+                GROUP BY p.id_producto";
+    
+        // Si se proporciona un valor para buscar, se filtra por nombre_producto
         if ($buscar) {
-            $sql .= "WHERE nombre_producto LIKE '%$buscar%';";
+            $sql .= " HAVING nombre_producto LIKE '%$buscar%';";
         }
+    
         return $resultado = $conexion->query($sql);
     }
-
+    
     // Función para agregar una nueva categoría
     public static function sqlAgregarCate($categoria) {
         include("db_fashion/cb.php");

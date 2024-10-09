@@ -4,66 +4,57 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-
-
 class Correo {
-    public static function correos($correo,$asunto,$body){
+    public static function correos($correo, $asunto, $body) {
         include("../PHPMailer/PHPMailer.php");
         include("../PHPMailer/Exception.php");
-        include("../PHPMailer/SMTP.php");// Solo si estás usando SMTP
+        include("../PHPMailer/SMTP.php");
 
-        //Create an instance; passing `true` enables exceptions
         $mail = new PHPMailer(true);
 
         try {
-            //Server settings   
-            $mail->isSMTP();                                                        //Send using SMTP
-            $mail->SMTPDebug  =  0;                                                 //Enable verbose debug output                           
-            $mail->Host       = 'smtp.mailersend.net';                              //Set the SMTP server to send through
-            $mail->SMTPAuth   =  true;                                              //Enable SMTP authentication
-            $mail->Username   = 'MS_XDNmBo@trial-351ndgw2yqdgzqx8.mlsender.net';    //SMTP username
-            $mail->Password   = 'A3Z6632W3UQ2pUHe';                                 //SMTP password
-            $mail->SMTPSecure = 'tls';                                              //Enable implicit TLS encryption
-            $mail->Port       =  587;                                               //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            // Server settings
+            $mail->isSMTP();
+            $mail->SMTPDebug = 0; // Cambiado para más información
+            $mail->Host       = 'smtp.mailersend.net'; // Servidor SMTP
+            $mail->SMTPAuth   = true;
+            $mail->Username   = 'MS_CkXKL4@trial-351ndgw2yqdgzqx8.mlsender.net'; // Nombre de usuario
+            $mail->Password   = 'ht1qsdHUXCkTSrnL'; // Contraseña (token de API)
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Protocolo de seguridad
+            $mail->Port       = 587; // Puerto
 
-            //Recipients
-            $mail->setFrom('MS_fb7crg@trial-z3m5jgr0dnmgdpyo.mlsender.net','FashionWorld');
-            $mail->addAddress($correo,'Cliente');     //Add a recipient;
+            // Recipients
+            $mail->setFrom('MS_CkXKL4@trial-351ndgw2yqdgzqx8.mlsender.net', 'Fashion World'); // Usando el dominio verificado
 
-            //Attachments
-            // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-            // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+            $mail->addAddress($correo, 'Cliente');
 
-            //Content
-            $mail->isHTML(true);                                  //Set email format to HTML
+            // Content
+            $mail->isHTML(true);
             $mail->Subject = $asunto;
             $mail->Body    = $body;
 
             $mail->send();
-            $salida =  0;
+            $salida = "Correo enviado exitosamente, revisa tu bandeja.";
         } catch (Exception $e) {
-            $salida =  1;
+            $salida = "Falla al enviar el correo. Error: {$mail->ErrorInfo}";
+            error_log($salida); // Registro de errores
         }
         return $salida;
     }
 
-
-        public static function enviarCorreo($correo,$dato){
-            include_once("modelo.php");
-            include_once("usuarios_class.php");
-            include_once("funciones_class.php");
-            include_once("token_class.php");
-            include_once("encrip_class.php");
-            $id = Usuarios::buscarId($correo);
-            $name = Modelo::buscarDatosUser(1,$id);
-            $message = "esta es la clave nueva ";
-            $html = HTMLGenerator::createEmailHtml($name, $message, $dato,EncriptarURl::encriptar($id));
-            Modelo::sqlCambiarClave($dato,$id);
-            echo Correo::correos($correo,"Recuperar clave",$html);
-
-        }
+    public static function enviarCorreo($correo, $dato) {
+        include_once("modelo.php");
+        include_once("usuarios_class.php");
+        include_once("funciones_class.php");
+        include_once("token_class.php");
+        include_once("encrip_class.php");
+        
+        $id = Usuarios::buscarId($correo);
+        $name = Modelo::buscarDatosUser(1, $id);
+        $message = "Esta es la clave nueva.";
+        $html = HTMLGenerator::createEmailHtml($name, $message, $dato, EncriptarURl::encriptar($id));
+        
+        Modelo::sqlCambiarClave($dato, $id);
+        echo Correo::correos($correo, "Recuperar clave", $html);
+    }
 }
-
-// Modelo::sqlCambiarClave($nuevaClave,$id);
-
-?>

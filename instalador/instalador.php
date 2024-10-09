@@ -1,9 +1,9 @@
 <?php
 // Variables recibidas del formulario
-$server = $_GET['servidor'] ?? 'localhost';
-$root = $_GET['root'] ?? 'root';
-$clave = $_GET['clave'] ?? '';
-$base = $_GET['nombre_bd'] ?? 'fw';
+$server = $_POST['servidor'] ?? 'localhost';
+$root = $_POST['root'] ?? 'root';
+$clave = $_POST['clave'] ?? '';
+$base = $_POST['nombre_bd'] ?? 'fw';
 
 // Verificar si las variables necesarias fueron proporcionadas
 if (empty($server) || empty($root) || empty($base)) {
@@ -42,13 +42,20 @@ if ($conexion->query($sql_create_bd) === true) {
     // Ejecutar el archivo SQL
     $sql = file_get_contents($ruta_base);
     if ($conexion2->multi_query($sql)) {
+        do {
+            if ($result = $conexion2->store_result()) {
+                $result->free();
+            }
+            if ($conexion2->errno) {
+                echo "Error en la consulta: " . $conexion2->error . "<br>";
+            }
+        } while ($conexion2->next_result());
+
         echo "Base de datos configurada correctamente.<br>";
 
-        // Eliminar el archivo instalador.php para evitar re-ejecutarlo
-        if (file_exists(__FILE__)) {
-            unlink(__FILE__);
-            echo "Instalador eliminado correctamente.<br>";
-        }
+        // Cerrar conexiones
+        $conexion->close();
+        $conexion2->close();
 
         // Redirigir al login
         header("Location: ../login.php");

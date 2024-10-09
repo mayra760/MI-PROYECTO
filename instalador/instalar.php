@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>Instalación de la Base de Datos</h1>
-        <form action="instalador.php" method="get">
+        <form action="instalador.php" method="post">
             <div class="form-group">
                 <label for="servidor" class="form-label">Servidor:</label>
                 <input type="text" name="servidor" id="servidor" class="form-control" value="localhost" required>

@@ -1,22 +1,11 @@
 <?php
-require_once 'modeloFechaEspe.php'; // Asegúrate de que la ruta sea correcta
+require_once 'modeloFechaEspe.php';  // Asegúrate de que la ruta sea correcta
+include("db_fashion/cb.php");  // Usa la conexión centralizada de la base de datos
 
-// Establece la conexión a la base de datos
-$host = 'localhost';
-$user = 'root';
-$password = 'root';
-$database = 'fw';
+// Establece la conexión en la clase FechaEspecial
+FechaEspecial::setDb($conexion);  // Utiliza la variable $conexion de cb.php
 
-$conn = new mysqli($host, $user, $password, $database);
-
-// Verifica si hay algún error en la conexión
-if ($conn->connect_error) {
-    die("Error de conexión: " . $conn->connect_error);
-}
-
-// Establecer la conexión en la clase FechaEspecial
-FechaEspecial::setDb($conn);
-
+// Obtener las fechas especiales
 $fechas = FechaEspecial::obtenerFechas();
 ?>
 
@@ -31,7 +20,6 @@ $fechas = FechaEspecial::obtenerFechas();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">  
 </head>
 <body>
-<center><a href="../admi/ctroBar.php?seccion=homeAdmi" class="btn btn-home"><i class="fas fa-home"> Home</i></a></center>
 
     <h1>Fechas Especiales</h1>
     <h2>Agregar Nueva Fecha Especial</h2>

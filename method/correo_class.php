@@ -18,13 +18,13 @@ class Correo {
             $mail->SMTPDebug = 0; // Cambiado para más información
             $mail->Host       = 'smtp.mailersend.net'; // Servidor SMTP
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'MS_CkXKL4@trial-351ndgw2yqdgzqx8.mlsender.net'; // Nombre de usuario
-            $mail->Password   = 'ht1qsdHUXCkTSrnL'; // Contraseña (token de API)
+            $mail->Username   = 'MS_a6vIoK@trial-351ndgw2yqdgzqx8.mlsender.net'; // Nombre de usuario
+            $mail->Password   = '2ynt6Rdr8kvsq8SP'; // Contraseña (token de API)
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Protocolo de seguridad
             $mail->Port       = 587; // Puerto
 
             // Recipients
-            $mail->setFrom('MS_CkXKL4@trial-351ndgw2yqdgzqx8.mlsender.net', 'Fashion World'); // Usando el dominio verificado
+            $mail->setFrom('MS_a6vIoK@trial-351ndgw2yqdgzqx8.mlsender.net', 'Fashion World'); // Usando el dominio verificado
 
             $mail->addAddress($correo, 'Cliente');
 

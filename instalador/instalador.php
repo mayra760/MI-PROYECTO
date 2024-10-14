@@ -57,6 +57,13 @@ if ($conexion->query($sql_create_bd) === true) {
         $conexion->close();
         $conexion2->close();
 
+        // Eliminar este archivo después de la instalación
+        $archivo_instalacion = __FILE__; // Obtiene el nombre del archivo actual
+        if (file_exists($archivo_instalacion)) {
+            unlink($archivo_instalacion); // Elimina el archivo
+            echo "Archivo de instalación eliminado.<br>";
+        }
+
         // Redirigir al login
         header("Location: ../login.php");
         exit();

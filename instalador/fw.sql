@@ -494,6 +494,31 @@ ALTER TABLE `tb_productos`
   ADD CONSTRAINT `fk_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `tb_categoria` (`id_categoria`);
 COMMIT;
 
+-- DELIMITER ;;
+
+-- CREATE TRIGGER `contando_eliminar_user` 
+-- AFTER DELETE ON `tb_usuarios` 
+-- FOR EACH ROW 
+-- BEGIN 
+--     INSERT INTO tb_conteo_eli (descripcion, conteo, fec_reg)
+--     VALUES (CONCAT('Se ha eliminado el usuario: ', OLD.nombre, ' con el documento: ', OLD.documento), 1, NOW());
+-- END;;
+
+-- DELIMITER ;;
+
+-- DELIMITER ;;
+
+-- CREATE TRIGGER `contando_registro_user` 
+-- AFTER INSERT ON `tb_usuarios`
+-- FOR EACH ROW 
+-- BEGIN 
+--     INSERT INTO tb_conteo_reg (descripcion, conteo, fec_reg)
+--     VALUES (CONCAT('Se ha registrado el usuario: ', NEW.nombre, ' con el documento: ', NEW.documento), 1, NOW());
+-- END;;
+
+-- DELIMITER ;;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

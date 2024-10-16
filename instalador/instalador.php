@@ -32,7 +32,7 @@ if ($conexion->query($sql_create_bd) === true) {
     }
 
     // Nombre del archivo SQL para realizar el volcado
-    $ruta_base = 'fw.sql';
+    $ruta_base = 'fwsena.sql';
 
     // Verificar si el archivo SQL existe
     if (!file_exists($ruta_base)) {

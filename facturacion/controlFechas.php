@@ -20,10 +20,10 @@ if (isset($_POST['accion'])) {
         // Llamar a la función para agregar una nueva fecha especial
         if (FechaEspecial::agregarFecha($evento, $fechaInicio, $fechaFin, $colorEvento)) {
             // Redirige con un mensaje de éxito
-            header('Location: fecha_especial.php?mensaje=Fecha especial agregada');
+            header('Location: fechaEspecial.php?mensaje=Fecha especial agregada');
         } else {
             // Redirige con un mensaje de error
-            header('Location: fecha_especial.php?mensaje=Error al agregar fecha especial');
+            header('Location: fechaEspecial.php?mensaje=Error al agregar fecha especial');
         }
     }
 
@@ -34,10 +34,10 @@ if (isset($_POST['accion'])) {
         // Llamar a la función para eliminar la fecha especial
         if (FechaEspecial::eliminarFecha($id)) {
             // Redirige con un mensaje de éxito
-            header('Location: fecha_especial.php?mensaje=Fecha especial eliminada');
+            header('Location: fechaEspecial.php?mensaje=Fecha especial eliminada');
         } else {
             // Redirige con un mensaje de error
-            header('Location: fecha_especial.php?mensaje=Error al eliminar fecha especial');
+            header('Location: fechaEsspecial.php?mensaje=Error al eliminar fecha especial');
         }
     }
 }

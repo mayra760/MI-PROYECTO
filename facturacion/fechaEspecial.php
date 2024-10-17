@@ -1,6 +1,6 @@
 <?php
 require_once 'modeloFechaEspe.php';  // Asegúrate de que la ruta sea correcta
-include("db_fashion/cb.php");  // Usa la conexión centralizada de la base de datos
+include("../method/db_fashion/cb.php");  // Usa la conexión centralizada de la base de datos
 
 // Establece la conexión en la clase FechaEspecial
 FechaEspecial::setDb($conexion);  // Utiliza la variable $conexion de cb.php

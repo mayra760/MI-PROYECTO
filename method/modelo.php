@@ -16,9 +16,10 @@ public static function sqlLoguin($documento) {
     // Consulta para obtener la contraseña del usuario según el documento proporcionado.
     $sql = "SELECT contraseña FROM tb_usuarios WHERE documento='$documento'";
     $resultado = $conexion->query($sql);
-
+    $conexion->close();
     // Si encuentra al usuario, devuelve la contraseña; de lo contrario, devuelve false.
     return ($resultado && $resultado->num_rows > 0) ? $resultado->fetch_assoc() : false;
+    
 }
 
  
@@ -41,14 +42,16 @@ public static function sqlRegistar($documento, $nombre, $apellido, $correo, $con
 
     // Si el documento ya existe, retorna `false` para indicar duplicado.
     if ($result->num_rows > 0) {
+        $conexion->close(); //cierra la conexion
         return false;  // El documento ya está registrado.
     } else {
         // Si no existe, inserta un nuevo usuario con los datos proporcionados.
         $sql = "INSERT INTO tb_usuarios(documento, nombre, apellido, correo, contraseña, rol) ";
         $sql .= "VALUES('$documento', '$nombre', '$apellido', '$correo', '$contraseña', '1')";
-
+        $resultado=$conexion->query($sql);
         // Ejecuta la consulta e indica si el registro fue exitoso.
-        return $conexion->query($sql);
+        $conexion->close();
+        return $resultado;
     }
 }
 
@@ -70,7 +73,8 @@ public static function sqliDuplicados($documento, $correo) {
 
     // Obtiene el número de coincidencias encontradas.
     $row = $resultado->fetch_assoc();
-
+ 
+    $conexion->close();//cierra la conexion de la  base de datos
     // Devuelve el número total de coincidencias.
     return $row['total'];
 }
@@ -87,9 +91,11 @@ public static function sqlPerfil($id) {
 
     // Realiza una consulta para seleccionar toda la información del usuario con el documento dado.
     $sql = "SELECT * FROM tb_usuarios WHERE documento = '$id'";
-    
-    // Ejecuta la consulta y devuelve el resultado.
-    return $conexion->query($sql);
+    $resultado = $conexion->query($sql);
+
+    $conexion->close();//cierre de la coexion 
+
+    return $resultado;//devuelve el resultado de la consulta
 }
 
 
@@ -104,9 +110,11 @@ public static function sqlRol($id) {
 
     // Realiza una consulta para seleccionar el rol del usuario con el documento proporcionado.
     $sql = "SELECT rol FROM tb_usuarios WHERE documento = '$id'";
-    
-    // Ejecuta la consulta y devuelve el resultado.
-    return $conexion->query($sql);
+    $resultado = $conexion->query($sql);
+
+    $conexion->close();//cierre de la coexion 
+
+    return $resultado;//devuelve el resultado de la consulta
 }
 
 
@@ -173,7 +181,10 @@ public static function sqlMostrarPro($buscar = null) {
         $sql .= " HAVING nombre_producto LIKE '%$buscar%';";
     }
 
-    return $conexion->query($sql);  // Ejecuta la consulta y devuelve el resultado.
+    $resultado = $conexion->query($sql);//ejecuta y guarda resultados
+    $conexion->close(); //cierre
+        // Devuelve el resultado de la consulta.
+    return $resultado;  
 }
 
 /**
@@ -187,7 +198,9 @@ public static function sqlAgregarCate($categoria) {
 
     // Inserta la nueva categoría en la base de datos.
     $sql = "INSERT INTO tb_categoria(categoria) VALUES ('$categoria')";
-    return $conexion->query($sql);  // Devuelve el resultado de la operación.
+    $resultado= $conexion->query($sql);  //ejecuta la conexion
+    $conexion->close();
+    return $resultado;
 }
 
 /**
@@ -200,7 +213,9 @@ public static function sqlVerCate() {
 
     // Selecciona todas las categorías de la base de datos.
     $sql = "SELECT * FROM tb_categoria";
-    return $conexion->query($sql);  // Devuelve el resultado de la consulta.
+    $resultado= $conexion->query($sql);  // Devuelve el resultado de la consulta.
+    $conexion->close();
+    return $resultado;
 }
 
 /**
@@ -211,17 +226,18 @@ public static function sqlVerCate() {
 public static function obtenerUltimaCategoria() {
     include("db_fashion/cb.php");  // Conecta a la base de datos.
 
-    // Busca la categoría con el ID más alto.
     $sql = "SELECT id_categoria FROM tb_categoria ORDER BY id_categoria DESC LIMIT 1";
     $resultado = $conexion->query($sql);
 
-    // Devuelve el ID de la última categoría si existe.
     if ($resultado && $resultado->num_rows > 0) {
         $fila = $resultado->fetch_assoc();
+        $conexion->close();  // Cierra la conexión a la base de datos.
         return $fila['id_categoria'];
     }
-    return null;  // Devuelve null si no hay categorías.
+    $conexion->close();  // Cierra la conexión en caso de no encontrar categorías.
+    return null;
 }
+
 
 /**
  * Muestra una categoría por su ID.
@@ -234,7 +250,9 @@ public static function sqlVerCatePorId($id_categoria) {
 
     // Selecciona la categoría con el ID dado.
     $sql = "SELECT * FROM tb_categoria WHERE id_categoria = " . intval($id_categoria);
-    return $conexion->query($sql);  // Devuelve el resultado de la consulta.
+    $resultado= $conexion->query($sql);  // resultado de la consulta.
+    $conexion->close();
+    return $resultado;
 }
 
 /**
@@ -252,9 +270,12 @@ public static function obtenerProductosPorCategoria($id_categoria) {
     $stmt->bind_param("i", $id_categoria);
     $stmt->execute();
 
-    // Devuelve el resultado de la búsqueda.
-    return $stmt->get_result();
+    $resultado= $stmt->get_result();
+    $stmt->close();  // Cierra la declaración preparada.
+    $conexion->close();  // Cierra la conexión a la base de datos.
+    return $resultado;  // Devuelve el resultado de la búsqueda.
 }
+
 
 /**
  * Elimina un producto y sus "likes" relacionados.
@@ -269,10 +290,14 @@ public static function sqlEliminarPro($id) {
     $sqlLikes = "DELETE FROM tb_likes WHERE producto_id = '$id'";
     $conexion->query($sqlLikes);
 
-    // Borra el producto de la base de datos.
-    $sqlProducto = "DELETE FROM tb_productos WHERE id_producto = '$id'";
-    return $resultado = $conexion->query($sqlProducto);
+    $sqlProducto = "DELETE FROM tb_productos WHERE id_producto = '$id'";// Borra el producto de la base de datos.
+    $resultado = $conexion->query($sqlProducto);
+    
+    $conexion->close();// Cierra la conexión a la base de datos.
+
+    return $resultado;  // Devuelve el resultado de la operación de eliminación del producto.
 }
+
 
 /**
  * Elimina una categoría y todos los productos asociados a ella.
@@ -284,18 +309,18 @@ public static function sqlEliminarCate($id) {
     // Incluye el archivo que conecta con la base de datos.
     include("db_fashion/cb.php");
     
-    // Prepara una consulta para eliminar todos los productos que pertenecen a la categoría con el ID dado.
     $sqlEliminarProductos = "DELETE FROM tb_productos WHERE id_categoria = '$id'";
-    
-    // Ejecuta la consulta para eliminar los productos.
-    $conexion->query($sqlEliminarProductos);
-    
-    // Prepara otra consulta para eliminar la categoría con el ID dado.
+
+    $conexion->query($sqlEliminarProductos);// Ejecuta la consulta para eliminar los productos.
     $sql = "DELETE FROM tb_categoria WHERE id_categoria = '$id'";
     
-    // Ejecuta la consulta para eliminar la categoría y devuelve el resultado de la operación.
-    return $conexion->query($sql);
+    $resultado = $conexion->query($sql);// Ejecuta la consulta para eliminar la categoría.
+    
+    $conexion->close();// Cierra la conexión a la base de datos.
+
+    return $resultado;  // Devuelve el resultado de la operación de eliminación de la categoría.
 }
+
 
 /**
  * Obtiene una categoría específica por su ID.
@@ -321,7 +346,9 @@ public static function sqlCategorias($des, $idCate) {
     $sql = "SELECT $dato FROM tb_categoria WHERE id_categoria = '$idCate'";
     
     // Ejecuta la consulta y devuelve el resultado.
-    return $resultado = $conexion->query($sql);
+     $resultado = $conexion->query($sql);
+     $conexion->close();
+     return $resultado;//devuelve el resultado de la consulta
 }
 
 /**
@@ -343,7 +370,9 @@ public static function sqlEditar($id_categoria, $categoria) {
     $sql = "UPDATE tb_categoria SET categoria = '$categoria' WHERE id_categoria = '$id_categoria'";
     
     // Ejecuta la consulta y devuelve el resultado de la operación.
-    return $resultado = $conexion->query($sql);
+    $resultado = $conexion->query($sql);
+    $conexion->close();//cierre de la conexion 
+    return $resultado;//devuelve el resultado de la consulta
 }
 
 /**
@@ -423,7 +452,9 @@ public static function sqlDatoPro($des, $idPro) {
     $sql = "SELECT $dato FROM tb_productos WHERE id_producto = '$idPro'";
 
     // Ejecuta la consulta y devuelve el resultado
-    return $resultado = $conexion->query($sql);
+     $resultado = $conexion->query($sql);
+     $conexion->close();
+     return $resultado;
 }
 
     
@@ -452,7 +483,9 @@ public static function sqlEditarPro($id_producto, $nombre, $precio, $cantidad, $
                 tallas = '$tallas'
             WHERE id_producto = '$id_producto'";
 
-    return $resultado = $conexion->query($sql);
+     $resultado = $conexion->query($sql);
+     $conexion->close();
+     return $resultado;
 }
 
     
@@ -465,10 +498,11 @@ public static function sqlEditarPro($id_producto, $nombre, $precio, $cantidad, $
 public static function sqlConteoEli() {
     // conexión de la base de datos
     include("db_fashion/cb.php");
-    // Prepara una consulta para seleccionar todos los registros de la tabla tb_conteo
     $sql = "SELECT * FROM tb_conteo ";
     // Ejecuta la consulta y devuelve el resultado
-    return $resultado = $conexion->query($sql);
+     $resultado = $conexion->query($sql);
+     $conexion->close();
+     return $resultado;
 }
 
 /**
@@ -479,7 +513,10 @@ public static function sqlConteoEli() {
 public static function sqlConteoReg() {
     include("db_fashion/cb.php"); // incluye la conexión de la base de datos
     $sql = "SELECT * FROM tb_conteo_reg "; // prepara la consulta para el conteo de registros
-    return $resultado = $conexion->query($sql); // ejecuta la consulta
+    $resultado = $conexion->query($sql);
+    $conexion->close();
+    return $resultado;
+
 }
 
 /**
@@ -490,7 +527,9 @@ public static function sqlConteoReg() {
 public static function sqlConteoPro() {
     include("db_fashion/cb.php"); // conexión de la base de datos
     $sql = "SELECT * FROM tb_conteo_productos"; // prepara la consulta con el conteo de los productos
-    return $resultado = $conexion->query($sql); // ejecución de la consulta
+    $resultado = $conexion->query($sql); // ejecución de la consulta
+    $conexion->close();
+    return $resultado;
 }
 
 /**
@@ -507,7 +546,9 @@ public static function sqlCambiarClave($nuevaClave, $id) {
     $sql = "UPDATE tb_usuarios SET contraseña = '$nuevaClave' ";
     $sql .= "WHERE documento = '$id'"; // Filtra por el documento del usuario
     // Ejecuta la consulta y devuelve el resultado de la operación
-    return $resultado = $conexion->query($sql);
+     $resultado = $conexion->query($sql);
+     $conexion->close();
+     return $resultado;
 }
 
 /**
@@ -528,24 +569,40 @@ public static function sqlCambiarClaveEncrip($nuevaClave, $id) {
 
     $sql = "UPDATE tb_usuarios SET contraseña = '$contraEncrip' ";
     $sql .= "WHERE documento = '$id'";
-    return $resultado = $conexion->query($sql); // ejecuta la consulta y devuelve la operación
+    $resultado = $conexion->query($sql); // ejecuta la consulta y devuelve la operación
+    $conexion->close();
+    return $resultado;
 }
 
 /**
- * Actualiza la información de un usuario en la base de datos.
+ * Actualiza los datos de un usuario en la base de datos de forma segura.
  *
- * @param string $idUser ID del usuario que se desea actualizar.
- * @param string $nombre Nuevo nombre del usuario.
- * @param string $apellido Nuevo apellido del usuario.
- * @param string $correo Nuevo correo del usuario.
- * @return bool Resultado de la operación de actualización (true si tuvo éxito, false si falló).
+ * @param int $idUser El ID del usuario que se desea actualizar.
+ * @param string $nombre El nuevo nombre del usuario.
+ * @param string $apellido El nuevo apellido del usuario.
+ * @param string $correo El nuevo correo del usuario.
+ * @return bool Devuelve true si la actualización fue exitosa; de lo contrario, false.
  */
 public static function sqlActualizarUser($idUser, $nombre, $apellido, $correo) {
     include("db_fashion/cb.php"); // conexión de la base de datos
-    $sql = "UPDATE tb_usuarios SET nombre = '$nombre', apellido = '$apellido', correo = '$correo' "; // prepara la consulta
-    $sql .= "WHERE documento = '$idUser'";
-    return $consulta = $conexion->query($sql);
+
+    $sql = "UPDATE tb_usuarios SET nombre = ?, apellido = ?, correo = ? WHERE documento = ?";
+
+    if ($stmt = $conexion->prepare($sql)) {
+        // Asegúrate de que el ID sea un entero para evitar SQL Injection
+        $stmt->bind_param("sssi", $nombre, $apellido, $correo, $idUser);
+        $result = $stmt->execute();
+        $stmt->close(); // Cierra el statement
+        $conexion->close(); // Cierra la conexión
+        return $result;
+    } else {
+        $conexion->close(); // Asegura que la conexión se cierre en caso de error
+        return false;
+    }
 }
+
+
+
 
 /**
  * Verifica si la contraseña proporcionada es correcta para un usuario dado.
@@ -561,7 +618,9 @@ public static function verficaClave($contraseñaN, $doc) {
     $sql = "SELECT count(*) FROM tb_usuarios "; // se prepara la consulta
     $sql .= "WHERE contraseña = '$contraseñaN' AND documento = '$doc'";
     // Finalmente, ejecutamos la consulta y devolvemos el resultado.
-    return $resultado = $conexion->query($sql);
+    $resultado = $conexion->query($sql);
+    $conexion->close();
+    return $resultado;
 }
 
     
@@ -579,7 +638,9 @@ public static function sqlBuscarId($email) {
     $sql = "SELECT * FROM tb_usuarios "; // aquí se prepara la consulta
     $sql .= "WHERE correo = '$email'";
     // Ejecutamos la consulta y devolvemos el resultado.
-    return $resultado = $conexion->query($sql);
+    $resultado = $conexion->query($sql);
+    $conexion->close();
+    return $resultado;
 }
 
     
@@ -606,7 +667,9 @@ public static function sqlBuscarUser($des, $busqueda) {
     echo $sql; // Aquí mostramos la consulta por si necesitamos debuggear.
 
     // Finalmente, ejecutamos la consulta y devolvemos el resultado.
-    return $resultado = $conexion->query($sql);
+    $resultado = $conexion->query($sql);
+    $conexion->close();
+    return $resultado;
 }
 
     
@@ -660,7 +723,9 @@ public static function sqlMostrarUser($buscaUser = null) {
     }
 
     // Ejecutamos la consulta y devolvemos el resultado
-    return $resultado = $conexion->query($sql);
+      $resultado = $conexion->query($sql);
+      $conexion->close();//cierre de la conexion
+      return $resultado;//se devuelve el resultado
 }
 
     
@@ -693,7 +758,9 @@ public static function sqlMostrarDaUser($des, $idUser) {
     $sql .= "WHERE documento = '$idUser'"; // Usamos comillas simples para el valor de $idUser
 
     // Ejecutamos la consulta y devolvemos el resultado
-    return $resultado = $conexion->query($sql);
+    $resultado = $conexion->query($sql);
+    $conexion->close();
+    return $resultado;
 }
 
 
@@ -709,7 +776,9 @@ public static function sqlVerificLike($usuario_id, $producto_id) {
 
     // Consulta para verificar el like para un producto específico
     $sql = "SELECT COUNT(*) as count FROM tb_likes WHERE usuario_id = '$usuario_id' AND producto_id = '$producto_id'";
-    return $conexion->query($sql); // Ejecutamos la consulta y devolvemos el resultado
+    $resultado= $conexion->query($sql); // Ejecutamos la consulta y devolvemos el resultado
+    $conexion->close();
+    return $resultado;
 }
 
 /**
@@ -733,8 +802,16 @@ public static function sqlAgregarLike($usuario_id, $producto_id) {
         // Insertar un nuevo like
         $operacion = "INSERT INTO tb_likes (producto_id, usuario_id, valor) VALUES ('$producto_id', '$usuario_id', 'like')";
     }
-    return $conexion->query($operacion); // Ejecuta la consulta y devuelve el resultado
+
+    $resultado = $conexion->query($operacion); 
+    
+    // Cierra la conexión a la base de datos
+    $conexion->close();
+    
+    // Devuelve el resultado de la operación
+    return $resultado;
 }
+
 
 /**
  * Actualiza la foto de un usuario en la base de datos.
@@ -748,12 +825,15 @@ public static function sqlActuFoto($foto, $id_user) {
     $sql = "UPDATE tb_usuarios SET foto = '$foto' WHERE documento = '$id_user'"; // Consulta
     
     if ($conexion->query($sql) === TRUE) {
+        $conexion->close(); // Cierra la conexión a la base de datos
         return true; // Retorna true si la consulta fue exitosa
     } else {
         echo "Error en la consulta SQL: " . $conexion->error; // Muestra el error si falla
+        $conexion->close(); // Cierra la conexión a la base de datos
         return false; // Retorna false si hubo un error
     }
 }
+
 
 
 
@@ -772,12 +852,17 @@ public static function sqlmostrarCateg($categoria) {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        return $result;
+        $stmt->close(); // Cierra la declaración preparada
+        $conexion->close(); // Cierra la conexión a la base de datos
+        return $result; // Retorna los resultados de la consulta
     } else {
         echo "No se encontraron productos para la categoría $categoria.";
-        return $result;
+        $stmt->close(); // Cierra la declaración preparada
+        $conexion->close(); // Cierra la conexión a la base de datos
+        return null; // Retorna null si no se encontraron productos
     }
 }
+
 
 /**
  * Obtiene los productos de la categoría de niños.
@@ -791,14 +876,18 @@ public static function sqlCateNiños($categoria) {
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $categoria); // la i representa que la categoría es un entero
     $stmt->execute();
-    return $stmt->get_result(); // Devuelve el resultado de la consulta
+    $result = $stmt->get_result(); // Devuelve el resultado de la consulta
+
+    $stmt->close(); //cierre de la conexion preparada 
+    $conexion->close();//cierre de la conexion
+    return $result; //retorna el resultado de la consulta
 }
 
 /**
  * Verifica los productos de una categoría específica (accesorios).
  *
  * @param int $categoria ID de la categoría de accesorios.
- * @return mysqli_result Resultado de la consulta con los productos de la categoría.
+ * @return mysqli_result|void Resultado de la consulta con los productos de la categoría, o un mensaje si no se encontraron productos.
  */
 public static function sqlverAcce($categoria) {
     include 'db_fashion/cb.php'; // conexión de la base de datos
@@ -807,16 +896,19 @@ public static function sqlverAcce($categoria) {
     $stmt->bind_param("i", $categoria); // asume que la categoría es un entero
     $stmt->execute();
 
-    return $stmt->get_result(); // Devuelve el resultado de la consulta
+    $result = $stmt->get_result(); // Devuelve el resultado de la consulta
+
+    // Cierra la declaración y la conexión
+    $stmt->close(); // Cierra la declaración preparada
+    $conexion->close(); // Cierra la conexión a la base de datos
+    return $result; // Retorna el resultado de la consulta
 }
-
-
 
 /**
  * Verifica los productos de la categoría de zapatos.
  *
  * @param int $categoria ID de la categoría de zapatos.
- * @return mysqli_result Resultado de la consulta con los productos de la categoría.
+ * @return mysqli_result|void Resultado de la consulta con los productos de la categoría, o un mensaje si no se encontraron productos.
  */
 public static function sqlverZapatos($categoria) {
     include 'db_fashion/cb.php'; // conexión de la base de datos
@@ -824,9 +916,13 @@ public static function sqlverZapatos($categoria) {
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("i", $categoria); // asume que la categoría es un entero
     $stmt->execute();
+    $result = $stmt->get_result(); // Devuelve el resultado de la consulta
+    $stmt->close(); // Cierra la declaración preparada
+    $conexion->close(); // Cierra la conexión a la base de datos
 
-    return $stmt->get_result(); // Devuelve el resultado de la consulta
+    return $result; // Retorna el resultado de la consulta
 }
+
 
 /**
  * Obtiene la lista de productos favoritos de los usuarios.
@@ -837,7 +933,9 @@ public static function sqlVerFavoritos() {
     include 'db_fashion/cb.php'; // incluye la conexión de la base de datos
     $salida = "";
     $sql = "SELECT * FROM tb_favoritos"; // selecciona la tabla de la base de datos
-    return $consulta = $conexion->query($sql);
+    $consulta = $conexion->query($sql);
+    $conexion->close();
+    return $consulta;
 }
 
 /**
@@ -849,7 +947,9 @@ public static function sqlverCarrito() {
     include 'db_fashion/cb.php'; // incluye la conexión de la base de datos
     $salida = "";
     $sql = "SELECT * FROM tb_carrito"; // selecciona la tabla de la base de datos
-    return $consulta = $conexion->query($sql);
+    $consulta = $conexion->query($sql);
+    $conexion->close();
+    return $consulta;
 }
 
 

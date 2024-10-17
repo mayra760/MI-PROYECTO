@@ -489,23 +489,32 @@ public static function actualizaDatosUser($des, $idUser) {
 }
 
 /**
- * Actualiza los datos de un usuario en la base de datos.
+ * Controlador para actualizar los datos del usuario.
  *
  * @param int $idUser El ID del usuario que se desea actualizar.
  * @param string $nombre El nuevo nombre del usuario.
  * @param string $apellido El nuevo apellido del usuario.
  * @param string $correo El nuevo correo del usuario.
- *
- * @return int 1 si la actualización fue exitosa; en caso contrario, no retorna nada.
+ * @return int 1 si la actualización fue exitosa; de lo contrario, 0.
  */
-public static function actualizarUser($idUser, $nombre, $apellido, $correo) { 
-    include_once("modelo.php"); // Incluimos el archivo del modelo
-    $consulta = Modelo::sqlActualizarUser($idUser, $nombre, $apellido, $correo); // Llamamos a la función del modelo para actualizar
-    if ($consulta) { // Si la actualización fue exitosa
-        $salida = 1; // Establecemos salida en 1 para indicar éxito
+public static function actualizarUser($idUser, $nombre, $apellido, $correo) {
+    include_once("modelo.php"); // Incluye el archivo del modelo
+
+    // Limpiar las entradas para prevenir XSS
+    $nombre = htmlspecialchars(trim($nombre));
+    $apellido = htmlspecialchars(trim($apellido));
+    $correo = htmlspecialchars(trim($correo));
+
+    $consulta = Modelo::sqlActualizarUser($idUser, $nombre, $apellido, $correo); // Llama a la función del modelo
+
+    if ($consulta) {
+        return 1; // Retorna 1 si fue exitoso
+    } else {
+        return 0; // Retorna 0 si falló
     }
-    return $salida; // Devolvemos el resultado de la actualización
 }
+
+
 
 
 /**

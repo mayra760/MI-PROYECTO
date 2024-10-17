@@ -53,7 +53,7 @@ public static function sqlRegistar($documento, $nombre, $apellido, $correo, $con
         $conexion->close();
         return $resultado;
     }
-}
+} 
 
 
 

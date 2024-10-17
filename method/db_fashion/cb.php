@@ -5,7 +5,10 @@ $user = $_POST['root'] ?? 'root';
 $pass = $_POST['clave'] ?? '';
 $db = $_POST['nombre_bd'] ?? 'fw';
 
-
+//$server = "localhost";
+//$user = "root";
+//$pass = "root";
+//$db = "fw";
 
 // Conectar al servidor MySQL
 $conexion = new mysqli($server, $user, $pass);

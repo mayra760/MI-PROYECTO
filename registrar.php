@@ -18,10 +18,9 @@
 <body>
     <div class="container">
         <img src="img/foto.jpeg" alt="Imagen">
-        <div class="form-container">
-            
+        <div class="form-container"> 
             <h1><b>REGÍSTRATE!</b></h1>
-            <center><b>Avisooo!!! no olvidar tu contraseña</b></center><br>
+            
 
             <!-- Mostrar mensaje de error si el documento ya existe -->
             <?php
@@ -31,10 +30,13 @@
             ?>
 
             <form id="registerForm" action="method/controler_login.php?recorrido=2" method="post">
-                <input type="number" name="documento" placeholder="Documento" required><br>
-                <input type="text" name="nombre" placeholder="Nombre" required><br>
-                <input type="text" name="apellido" placeholder="Apellido" required><br>
-                <input type="email" name="correo" placeholder="Correo" required><br>
+                <!-- Token CSRF (opcional, asegúrate de generarlo en el servidor) -->
+                <input type="hidden" name="token" value="<?php echo htmlspecialchars($token ?? '', ENT_QUOTES); ?>">
+
+                <input type="number" name="documento" placeholder="Documento" required pattern="\d{8,10}" title="Ingrese un documento válido." value="<?php echo isset($_POST['documento']) ? htmlspecialchars($_POST['documento'], ENT_QUOTES) : ''; ?>"><br>
+                <input type="text" name="nombre" placeholder="Nombre" required pattern="[A-Za-z ]+" title="Ingrese un nombre válido. Solo letras y espacios." value="<?php echo isset($_POST['nombre']) ? htmlspecialchars($_POST['nombre'], ENT_QUOTES) : ''; ?>"><br>
+                <input type="text" name="apellido" placeholder="Apellido" required pattern="[A-Za-z ]+" title="Ingrese un apellido válido. Solo letras y espacios." value="<?php echo isset($_POST['apellido']) ? htmlspecialchars($_POST['apellido'], ENT_QUOTES) : ''; ?>"><br>
+                <input type="email" name="correo" placeholder="Correo" required value="<?php echo isset($_POST['correo']) ? htmlspecialchars($_POST['correo'], ENT_QUOTES) : ''; ?>"><br>
                 <div>
                     <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required>
                     <input type="checkbox" id="showPassword" onclick="visibilidadContraseña()"> Mostrar contraseña
@@ -80,5 +82,13 @@
     <script src="js/alertError.js"></script>
     <script src="js/registroca.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function visibilidadContraseña() {
+            const passwordField = document.getElementById("contraseña");
+            const showPasswordCheckbox = document.getElementById("showPassword");
+            passwordField.type = showPasswordCheckbox.checked ? "text" : "password";
+        }
+    </script>
 </body>
 </html>

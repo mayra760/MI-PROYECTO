@@ -1,18 +1,1 @@
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-}
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
-}
-h1 {
-    text-align: center;
-    color: #333;
-}
-#myChart {
-    max-width: 600px;
-    margin: 20px auto;
-}
+body{font-family:Arial,sans-serif;background-color:#f4f4f4}.container{width:80%;margin:auto;overflow:hidden}h1{text-align:center;color:#333}#myChart{max-width:600px;margin:20px auto}
